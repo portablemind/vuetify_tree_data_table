@@ -1,0 +1,59 @@
+{
+  "manifest": {
+    "name": "v-tree-data-table",
+    "version": "1.0.0",
+    "description": "A Data Table with a Tree for Vuetify.",
+    "main": "dist/v-tree-data-table.js",
+    "scripts": {
+      "build": "rimraf ./dist && webpack --config ./webpack.config.js"
+    },
+    "author": {
+      "name": "Russell Holmes"
+    },
+    "license": "MIT",
+    "dependencies": {
+      "babel-core": "^6.26.3",
+      "babel-loader": "^7.1.5",
+      "css-loader": "^1.0.0",
+      "lodash": "^4.2.0",
+      "rimraf": "^2.6.2",
+      "vue": "^2.5.17",
+      "vue-loader": "^14.2.2",
+      "vue-template-compiler": "^2.5.17",
+      "vuetify": "^1.1.9",
+      "webpack": "^4.16.4",
+      "webpack-merge": "^4.1.4"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/portablemind/vuetify_tree_data_table.git"
+    },
+    "homepage": "https://github.com/portablemind/vuetify_tree_data_table",
+    "bugs": {
+      "url": "https://github.com/portablemind/vuetify_tree_data_table/issues"
+    },
+    "keywords": [
+      "vuetify",
+      "tree",
+      "data",
+      "table"
+    ],
+    "devDependencies": {
+      "uglifyjs-webpack-plugin": "^1.2.7",
+      "webpack-cli": "^3.1.0"
+    },
+    "_registry": "npm",
+    "_loc": "/Users/russellholmes/Library/Caches/Yarn/v1/npm-v-tree-data-table-1.0.0-67f5ff14-1bc4-4b08-a783-14578c6dbcfc-1533494045601/package.json",
+    "readmeFilename": "README.md",
+    "readme": "# Vuetify Tree Data Table\n\nTree functionality added to the Vuetify Data Table. Supports DnD sorting and moving nodes to new parents.\n"
+  },
+  "artifacts": [],
+  "remote": {
+    "type": "copy",
+    "registry": "npm",
+    "hash": "67f5ff14-1bc4-4b08-a783-14578c6dbcfc-1533494045601",
+    "reference": "/Users/russellholmes/Desktop/saas_instances/vuejs/lib/vuetify_tree_data_table"
+  },
+  "registry": "npm",
+  "hash": "67f5ff14-1bc4-4b08-a783-14578c6dbcfc-1533494045601"
+}
