@@ -51,9 +51,9 @@
   "remote": {
     "type": "copy",
     "registry": "npm",
-    "hash": "67f5ff14-1bc4-4b08-a783-14578c6dbcfc-1533494045601",
+    "hash": "4f07dc18-d2c8-4c57-9589-7a5355840803-1533498316737",
     "reference": "/Users/russellholmes/Desktop/saas_instances/vuejs/lib/vuetify_tree_data_table"
   },
   "registry": "npm",
-  "hash": "67f5ff14-1bc4-4b08-a783-14578c6dbcfc-1533494045601"
+  "hash": "4f07dc18-d2c8-4c57-9589-7a5355840803-1533498316737"
 }
