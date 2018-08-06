@@ -25,10 +25,6 @@ var commonConfig = {
       }
     ]
   },
-  externals: {
-    lodash: "lodash",
-    vuetify: "vuetify"
-  },
   optimization: {
     minimizer: [
       new UglifyJsPlugin()
