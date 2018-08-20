@@ -1,6 +1,6 @@
 {
   "name": "v-tree-data-table",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "A Data Table with a Tree for Vuetify.",
   "main": "dist/v-tree-data-table.js",
   "scripts": {
@@ -18,9 +18,9 @@
     "vue-loader": "^14.2.2",
     "vue-template-compiler": "^2.5.17",
     "vuetify": "^1.1.9",
-    "webpack": "^4.16.5",
+    "webpack": "^3.11.0",
     "webpack-merge": "^4.1.4",
-    "yarn": "^1.9.4"
+    "yarn": "^1.7.0"
   },
   "repository": "git+https://github.com/portablemind/vuetify_tree_data_table.git",
   "homepage": "https://github.com/portablemind/vuetify_tree_data_table",
@@ -34,8 +34,7 @@
     "table"
   ],
   "devDependencies": {
-    "uglifyjs-webpack-plugin": "^1.2.7",
-    "webpack-cli": "^3.1.0"
+    "uglifyjs-webpack-plugin": "^1.2.7"
   },
   "private": false
 }

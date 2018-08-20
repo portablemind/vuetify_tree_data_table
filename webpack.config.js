@@ -1,7 +1,6 @@
 const webpack = require("webpack");
 const merge = require("webpack-merge");
 const path = require("path");
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 var commonConfig = {
   output: {
@@ -23,11 +22,6 @@ var commonConfig = {
         test: /\.css$/,
         loader: "style!less!css"
       }
-    ]
-  },
-  optimization: {
-    minimizer: [
-      new UglifyJsPlugin()
     ]
   }
 };
