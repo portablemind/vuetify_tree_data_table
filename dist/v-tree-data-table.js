@@ -139,6 +139,8 @@ module.exports = Symbol;
 //
 //
 //
+//
+//
 
 
 
@@ -636,7 +638,7 @@ module.exports = isObjectLike;
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_v_tree_data_table_vue__ = __webpack_require__(1);
 /* empty harmony namespace reexport */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2933321a_hasScoped_true_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_v_tree_data_table_vue__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2933321a_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_v_tree_data_table_vue__ = __webpack_require__(23);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__ = __webpack_require__(24);
 var disposed = false
 function injectStyle (context) {
@@ -653,14 +655,14 @@ var __vue_template_functional__ = false
 /* styles */
 var __vue_styles__ = injectStyle
 /* scopeId */
-var __vue_scopeId__ = "data-v-2933321a"
+var __vue_scopeId__ = null
 /* moduleIdentifier (server only) */
 var __vue_module_identifier__ = null
 
 var Component = Object(__WEBPACK_IMPORTED_MODULE_2__node_modules_vue_loader_lib_runtime_component_normalizer__["a" /* default */])(
   __WEBPACK_IMPORTED_MODULE_0__babel_loader_node_modules_vue_loader_lib_selector_type_script_index_0_v_tree_data_table_vue__["a" /* default */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2933321a_hasScoped_true_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_v_tree_data_table_vue__["a" /* render */],
-  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2933321a_hasScoped_true_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_v_tree_data_table_vue__["b" /* staticRenderFns */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2933321a_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_v_tree_data_table_vue__["a" /* render */],
+  __WEBPACK_IMPORTED_MODULE_1__node_modules_vue_loader_lib_template_compiler_index_id_data_v_2933321a_hasScoped_false_optionsId_0_buble_transforms_node_modules_vue_loader_lib_selector_type_template_index_0_v_tree_data_table_vue__["b" /* staticRenderFns */],
   __vue_template_functional__,
   __vue_styles__,
   __vue_scopeId__,
@@ -699,13 +701,13 @@ if(typeof content === 'string') content = [[module.i, content, '']];
 if(content.locals) module.exports = content.locals;
 // add the styles to the DOM
 var add = __webpack_require__(7).default
-var update = add("db2ff1e2", content, false, {});
+var update = add("a0334ad2", content, false, {});
 // Hot Module Replacement
 if(false) {
  // When the styles change, update the <style> tags
  if(!content.locals) {
-   module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"id\":\"data-v-2933321a\",\"scoped\":true,\"sourceMap\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./v-tree-data-table.vue", function() {
-     var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"id\":\"data-v-2933321a\",\"scoped\":true,\"sourceMap\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./v-tree-data-table.vue");
+   module.hot.accept("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./v-tree-data-table.vue", function() {
+     var newContent = require("!!../node_modules/css-loader/index.js!../node_modules/vue-loader/lib/style-compiler/index.js?{\"optionsId\":\"0\",\"vue\":true,\"scoped\":false,\"sourceMap\":false}!../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./v-tree-data-table.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -723,7 +725,7 @@ exports = module.exports = __webpack_require__(6)(false);
 
 
 // module
-exports.push([module.i, "\n.folder[data-v-2933321a] {\n  cursor: pointer;\n}\n.drag *[data-v-2933321a] {\n  pointer-events: none;\n}\n.inactive[data-v-2933321a] {\n  border: none !important;\n  height: 5px;\n  background-color: transparent !important;\n}\n.inactive td[data-v-2933321a] {\n  height: 5px !important;\n}\n.active[data-v-2933321a] {\n  background-color: green !important;\n}\n.active td[data-v-2933321a] {\n  height: 15px !important;\n}\n.sort-handle[data-v-2933321a] {\n  cursor: move;\n}\n", ""]);
+exports.push([module.i, "\n.v-tree-data-table .folder {\n  cursor: pointer;\n}\n.v-tree-data-table .drag * {\n  pointer-events: none;\n}\n.v-tree-data-table .inactive {\n  border: none !important;\n  height: 5px;\n  background-color: transparent !important;\n}\n.v-tree-data-table .inactive td {\n  height: 5px !important;\n}\n.v-tree-data-table .active {\n  background-color: green !important;\n}\n.v-tree-data-table .active td {\n  height: 15px !important;\n}\n.v-tree-data-table .sort-handle {\n  cursor: move;\n}\n", ""]);
 
 // exports
 
@@ -1585,29 +1587,281 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("v-data-table", {
-    ref: "dataTable",
-    attrs: {
-      headers: _vm.computedHeaders,
-      items: _vm.flattenedNodes,
-      pagination: _vm.internalPagination,
-      "total-items": _vm.totalItems,
-      loading: _vm.loading
-    },
-    on: {
-      "update:pagination": function($event) {
-        _vm.internalPagination = $event
-      }
-    },
-    scopedSlots: _vm._u([
-      {
-        key: "items",
-        fn: function(ref) {
-          var item = ref.item
-          var index = ref.index
-          return [
-            index == 0
-              ? _c(
+  return _c(
+    "div",
+    { staticClass: "v-tree-data-table" },
+    [
+      _c("v-data-table", {
+        ref: "dataTable",
+        attrs: {
+          headers: _vm.computedHeaders,
+          items: _vm.flattenedNodes,
+          pagination: _vm.internalPagination,
+          "total-items": _vm.totalItems,
+          loading: _vm.loading
+        },
+        on: {
+          "update:pagination": function($event) {
+            _vm.internalPagination = $event
+          }
+        },
+        scopedSlots: _vm._u([
+          {
+            key: "items",
+            fn: function(ref) {
+              var item = ref.item
+              var index = ref.index
+              return [
+                index == 0
+                  ? _c(
+                      "tr",
+                      {
+                        staticClass: "drop-row inactive",
+                        on: {
+                          dragenter: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            _vm.dragEnterSlot($event)
+                          },
+                          dragleave: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            _vm.dragLeaveSlot($event)
+                          },
+                          drop: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            _vm.dropRow($event)
+                          },
+                          dragover: function($event) {
+                            $event.stopPropagation()
+                            _vm.dragOverSlot($event)
+                          }
+                        }
+                      },
+                      [
+                        _c("td", {
+                          attrs: { colspan: _vm.computedHeaders.length }
+                        })
+                      ]
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                item.leaf
+                  ? _c(
+                      "tr",
+                      {
+                        key: item.id,
+                        staticClass: "leaf",
+                        style: _vm.nodeHidden(item),
+                        attrs: { id: item.id },
+                        on: {
+                          dblclick: function(e) {
+                            _vm.$emit("dblclick", e, item)
+                          },
+                          contextmenu: function($event) {
+                            $event.preventDefault()
+                            return (function(e) {
+                              _vm.$emit("contextmenu", e, item)
+                            })($event)
+                          },
+                          dragenter: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            _vm.dragEnterLeaf($event)
+                          },
+                          dragleave: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            _vm.dragLeaveLeaf($event)
+                          },
+                          drop: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            _vm.dropRow($event)
+                          },
+                          dragover: function($event) {
+                            $event.stopPropagation()
+                            _vm.dragOverLeaf($event)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "td",
+                          {
+                            staticClass: "px-1",
+                            staticStyle: { width: "0.1%" }
+                          },
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "sort-handle",
+                                staticStyle: { cursor: "move" },
+                                attrs: { icon: "", draggable: "" },
+                                on: {
+                                  dragstart: function($event) {
+                                    $event.stopPropagation()
+                                    _vm.dragStart($event)
+                                  },
+                                  dragend: function($event) {
+                                    $event.stopPropagation()
+                                    $event.preventDefault()
+                                    return _vm.dragEnd($event)
+                                  }
+                                }
+                              },
+                              [_c("v-icon", [_vm._v("drag_handle")])],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        item.leaf
+                          ? _c(
+                              "td",
+                              {
+                                staticClass: "expandable-node",
+                                style: _vm.nodeStyle(item)
+                              },
+                              [_c("v-icon", [_vm._v("keyboard_arrow_right")])],
+                              1
+                            )
+                          : _c(
+                              "td",
+                              {
+                                staticClass: "expandable-node",
+                                style: _vm.nodeStyle(item),
+                                on: {
+                                  click: function($event) {
+                                    _vm.toggleNode(item)
+                                  }
+                                }
+                              },
+                              [
+                                _c("v-icon", [
+                                  _vm._v(_vm._s(_vm.expandable_icon(item)))
+                                ])
+                              ],
+                              1
+                            ),
+                        _vm._v(" "),
+                        _vm._t("row", null, { record: item })
+                      ],
+                      2
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                !item.leaf
+                  ? _c(
+                      "tr",
+                      {
+                        key: item.id,
+                        staticClass: "folder",
+                        style: _vm.nodeHidden(item),
+                        attrs: { id: item.id },
+                        on: {
+                          dblclick: function(e) {
+                            _vm.$emit("dblclick", e, item)
+                          },
+                          contextmenu: function($event) {
+                            $event.preventDefault()
+                            return (function(e) {
+                              _vm.$emit("contextmenu", e, item)
+                            })($event)
+                          },
+                          dragenter: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            _vm.dragEnterFolder($event)
+                          },
+                          dragleave: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            _vm.dragLeaveFolder($event)
+                          },
+                          drop: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            _vm.dropRow($event)
+                          },
+                          dragover: function($event) {
+                            $event.stopPropagation()
+                            _vm.dragOverFolder($event)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "td",
+                          {
+                            staticClass: "px-1",
+                            staticStyle: { width: "0.1%" }
+                          },
+                          [
+                            _c(
+                              "v-btn",
+                              {
+                                staticClass: "sort-handle",
+                                staticStyle: { cursor: "move" },
+                                attrs: { icon: "", draggable: "" },
+                                on: {
+                                  dragstart: function($event) {
+                                    $event.stopPropagation()
+                                    _vm.dragStart($event)
+                                  },
+                                  dragend: function($event) {
+                                    $event.stopPropagation()
+                                    $event.preventDefault()
+                                    return _vm.dragEnd($event)
+                                  }
+                                }
+                              },
+                              [_c("v-icon", [_vm._v("drag_handle")])],
+                              1
+                            )
+                          ],
+                          1
+                        ),
+                        _vm._v(" "),
+                        item.leaf
+                          ? _c(
+                              "td",
+                              {
+                                staticClass: "expandable-node",
+                                style: _vm.nodeStyle(item)
+                              },
+                              [_c("v-icon", [_vm._v("keyboard_arrow_right")])],
+                              1
+                            )
+                          : _c(
+                              "td",
+                              {
+                                staticClass: "expandable-node",
+                                style: _vm.nodeStyle(item),
+                                on: {
+                                  click: function($event) {
+                                    _vm.toggleNode(item)
+                                  }
+                                }
+                              },
+                              [
+                                _c("v-icon", [
+                                  _vm._v(_vm._s(_vm.expandable_icon(item)))
+                                ])
+                              ],
+                              1
+                            ),
+                        _vm._v(" "),
+                        _vm._t("row", null, { record: item })
+                      ],
+                      2
+                    )
+                  : _vm._e(),
+                _vm._v(" "),
+                _c(
                   "tr",
                   {
                     staticClass: "drop-row inactive",
@@ -1635,249 +1889,14 @@ var render = function() {
                   },
                   [_c("td", { attrs: { colspan: _vm.computedHeaders.length } })]
                 )
-              : _vm._e(),
-            _vm._v(" "),
-            item.leaf
-              ? _c(
-                  "tr",
-                  {
-                    key: item.id,
-                    staticClass: "leaf",
-                    style: _vm.nodeHidden(item),
-                    attrs: { id: item.id },
-                    on: {
-                      dblclick: function(e) {
-                        _vm.$emit("dblclick", e, item)
-                      },
-                      contextmenu: function($event) {
-                        $event.preventDefault()
-                        return (function(e) {
-                          _vm.$emit("contextmenu", e, item)
-                        })($event)
-                      },
-                      dragenter: function($event) {
-                        $event.stopPropagation()
-                        $event.preventDefault()
-                        _vm.dragEnterLeaf($event)
-                      },
-                      dragleave: function($event) {
-                        $event.stopPropagation()
-                        $event.preventDefault()
-                        _vm.dragLeaveLeaf($event)
-                      },
-                      drop: function($event) {
-                        $event.stopPropagation()
-                        $event.preventDefault()
-                        _vm.dropRow($event)
-                      },
-                      dragover: function($event) {
-                        $event.stopPropagation()
-                        _vm.dragOverLeaf($event)
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "td",
-                      { staticClass: "px-1", staticStyle: { width: "0.1%" } },
-                      [
-                        _c(
-                          "v-btn",
-                          {
-                            staticClass: "sort-handle",
-                            staticStyle: { cursor: "move" },
-                            attrs: { icon: "", draggable: "" },
-                            on: {
-                              dragstart: function($event) {
-                                $event.stopPropagation()
-                                _vm.dragStart($event)
-                              },
-                              dragend: function($event) {
-                                $event.stopPropagation()
-                                $event.preventDefault()
-                                return _vm.dragEnd($event)
-                              }
-                            }
-                          },
-                          [_c("v-icon", [_vm._v("drag_handle")])],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    item.leaf
-                      ? _c(
-                          "td",
-                          {
-                            staticClass: "expandable-node",
-                            style: _vm.nodeStyle(item)
-                          },
-                          [_c("v-icon", [_vm._v("keyboard_arrow_right")])],
-                          1
-                        )
-                      : _c(
-                          "td",
-                          {
-                            staticClass: "expandable-node",
-                            style: _vm.nodeStyle(item),
-                            on: {
-                              click: function($event) {
-                                _vm.toggleNode(item)
-                              }
-                            }
-                          },
-                          [
-                            _c("v-icon", [
-                              _vm._v(_vm._s(_vm.expandable_icon(item)))
-                            ])
-                          ],
-                          1
-                        ),
-                    _vm._v(" "),
-                    _vm._t("row", null, { record: item })
-                  ],
-                  2
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            !item.leaf
-              ? _c(
-                  "tr",
-                  {
-                    key: item.id,
-                    staticClass: "folder",
-                    style: _vm.nodeHidden(item),
-                    attrs: { id: item.id },
-                    on: {
-                      dblclick: function(e) {
-                        _vm.$emit("dblclick", e, item)
-                      },
-                      contextmenu: function($event) {
-                        $event.preventDefault()
-                        return (function(e) {
-                          _vm.$emit("contextmenu", e, item)
-                        })($event)
-                      },
-                      dragenter: function($event) {
-                        $event.stopPropagation()
-                        $event.preventDefault()
-                        _vm.dragEnterFolder($event)
-                      },
-                      dragleave: function($event) {
-                        $event.stopPropagation()
-                        $event.preventDefault()
-                        _vm.dragLeaveFolder($event)
-                      },
-                      drop: function($event) {
-                        $event.stopPropagation()
-                        $event.preventDefault()
-                        _vm.dropRow($event)
-                      },
-                      dragover: function($event) {
-                        $event.stopPropagation()
-                        _vm.dragOverFolder($event)
-                      }
-                    }
-                  },
-                  [
-                    _c(
-                      "td",
-                      { staticClass: "px-1", staticStyle: { width: "0.1%" } },
-                      [
-                        _c(
-                          "v-btn",
-                          {
-                            staticClass: "sort-handle",
-                            staticStyle: { cursor: "move" },
-                            attrs: { icon: "", draggable: "" },
-                            on: {
-                              dragstart: function($event) {
-                                $event.stopPropagation()
-                                _vm.dragStart($event)
-                              },
-                              dragend: function($event) {
-                                $event.stopPropagation()
-                                $event.preventDefault()
-                                return _vm.dragEnd($event)
-                              }
-                            }
-                          },
-                          [_c("v-icon", [_vm._v("drag_handle")])],
-                          1
-                        )
-                      ],
-                      1
-                    ),
-                    _vm._v(" "),
-                    item.leaf
-                      ? _c(
-                          "td",
-                          {
-                            staticClass: "expandable-node",
-                            style: _vm.nodeStyle(item)
-                          },
-                          [_c("v-icon", [_vm._v("keyboard_arrow_right")])],
-                          1
-                        )
-                      : _c(
-                          "td",
-                          {
-                            staticClass: "expandable-node",
-                            style: _vm.nodeStyle(item),
-                            on: {
-                              click: function($event) {
-                                _vm.toggleNode(item)
-                              }
-                            }
-                          },
-                          [
-                            _c("v-icon", [
-                              _vm._v(_vm._s(_vm.expandable_icon(item)))
-                            ])
-                          ],
-                          1
-                        ),
-                    _vm._v(" "),
-                    _vm._t("row", null, { record: item })
-                  ],
-                  2
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _c(
-              "tr",
-              {
-                staticClass: "drop-row inactive",
-                on: {
-                  dragenter: function($event) {
-                    $event.stopPropagation()
-                    $event.preventDefault()
-                    _vm.dragEnterSlot($event)
-                  },
-                  dragleave: function($event) {
-                    $event.stopPropagation()
-                    $event.preventDefault()
-                    _vm.dragLeaveSlot($event)
-                  },
-                  drop: function($event) {
-                    $event.stopPropagation()
-                    $event.preventDefault()
-                    _vm.dropRow($event)
-                  },
-                  dragover: function($event) {
-                    $event.stopPropagation()
-                    _vm.dragOverSlot($event)
-                  }
-                }
-              },
-              [_c("td", { attrs: { colspan: _vm.computedHeaders.length } })]
-            )
-          ]
-        }
-      }
-    ])
-  })
+              ]
+            }
+          }
+        ])
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
