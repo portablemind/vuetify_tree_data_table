@@ -307,9 +307,11 @@ export default {
           $target.parents('.folder').attr('id') != this.draggedNode.id
         ) {
           event.preventDefault();
+        } else if (
+          $target.parents('.folder').attr('id') != this.draggedNode.id
+        ) {
+          event.preventDefault();
         }
-      } else if ($target.parents('.folder').attr('id') != this.draggedNode.id) {
-        event.preventDefault();
       }
     },
 
