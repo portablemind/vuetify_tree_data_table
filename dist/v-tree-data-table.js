@@ -347,7 +347,7 @@ module.exports = Symbol;
     dragOverFolder(event) {
       const $target = $(event.target);
 
-      if (this.draggedNode.parentNode) {
+      if (this.draggedNode) {
         if ($target.parents('.folder').attr('id') != this.draggedNode.parentNode.id && $target.parents('.folder').attr('id') != this.draggedNode.id) {
           event.preventDefault();
         }
@@ -371,7 +371,7 @@ module.exports = Symbol;
 
       this.overFolder = $target.parents('.leaf')[0];
 
-      if (this.draggedNode.parentNode) {
+      if (this.draggedNode) {
         if ($target.parents('.leaf').attr('id') != this.draggedNode.parentNode.id && $target.parents('.leaf').attr('id') != this.draggedNode.id) {
           $target.parents('.leaf').addClass('active');
         }

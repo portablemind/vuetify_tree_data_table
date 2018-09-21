@@ -300,7 +300,7 @@ export default {
     dragOverFolder(event) {
       const $target = $(event.target);
 
-      if (this.draggedNode.parentNode) {
+      if (this.draggedNode) {
         if (
           $target.parents('.folder').attr('id') !=
             this.draggedNode.parentNode.id &&
@@ -328,7 +328,7 @@ export default {
 
       this.overFolder = $target.parents('.leaf')[0];
 
-      if (this.draggedNode.parentNode) {
+      if (this.draggedNode) {
         if (
           $target.parents('.leaf').attr('id') !=
             this.draggedNode.parentNode.id &&
