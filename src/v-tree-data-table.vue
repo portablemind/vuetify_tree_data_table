@@ -183,8 +183,9 @@ export default {
       this.clearActive();
 
       if (
-        $target.parents('.drop-row').length > 0 ||
-        $target.hasClass('.drop-row')
+        ($target.parents('.drop-row').length > 0 ||
+          $target.hasClass('.drop-row')) &&
+        this.draggedNode
       ) {
         if (
           parseInt(
@@ -227,6 +228,7 @@ export default {
       const $target = $(event.target);
 
       if (
+        this.draggedNode &&
         parseInt(
           $target
             .parents('.drop-row')

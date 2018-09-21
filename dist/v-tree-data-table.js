@@ -270,7 +270,7 @@ module.exports = Symbol;
 
       this.clearActive();
 
-      if ($target.parents('.drop-row').length > 0 || $target.hasClass('.drop-row')) {
+      if (($target.parents('.drop-row').length > 0 || $target.hasClass('.drop-row')) && this.draggedNode) {
         if (parseInt($target.parents('.drop-row').prev().attr('id')) != this.draggedNode.id && parseInt($target.parents('.drop-row').next().attr('id')) != this.draggedNode.id) {
           $target.parents('.drop-row').removeClass('inactive');
           $target.parents('.drop-row').addClass('active');
@@ -294,7 +294,7 @@ module.exports = Symbol;
     dragOverSlot(event) {
       const $target = $(event.target);
 
-      if (parseInt($target.parents('.drop-row').prev().attr('id')) != this.draggedNode.id && parseInt($target.parents('.drop-row').next().attr('id')) != this.draggedNode.id) {
+      if (this.draggedNode && parseInt($target.parents('.drop-row').prev().attr('id')) != this.draggedNode.id && parseInt($target.parents('.drop-row').next().attr('id')) != this.draggedNode.id) {
         event.preventDefault();
       }
     },
