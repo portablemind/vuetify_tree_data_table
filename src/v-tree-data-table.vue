@@ -586,7 +586,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .folder {
   cursor: pointer;
 }
