@@ -3,47 +3,49 @@
 */
 
 <template>
-  <v-data-table ref="dataTable" :headers="computedHeaders" :items="flattenedNodes" :pagination.sync="internalPagination" :total-items="totalItems" :loading="loading">
-    <template slot="items" slot-scope="{ item, index }">
-      <tr v-if="index == 0" class="drop-row inactive" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
-        <td :colspan="computedHeaders.length"></td>
-      </tr>
+  <div class="v-tree-data-table">
+    <v-data-table ref="dataTable" :headers="computedHeaders" :items="flattenedNodes" :pagination.sync="internalPagination" :total-items="totalItems" :loading="loading">
+      <template slot="items" slot-scope="{ item, index }">
+        <tr v-if="index == 0" class="drop-row inactive" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
+          <td :colspan="computedHeaders.length"></td>
+        </tr>
 
-      <tr v-if="item.leaf" class="leaf" @dblclick="(e)=>{$emit('dblclick', e, item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, item)}" :key="item.id" :id="item.id" :style="nodeHidden(item)" @dragenter.stop.prevent="dragEnterLeaf($event)" @dragleave.stop.prevent="dragLeaveLeaf($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverLeaf($event)">
-        <td class="px-1" style="width: 0.1%">
-          <v-btn style="cursor: move" icon class="sort-handle" @dragstart.stop="dragStart($event)" @dragend.stop.prevent="dragEnd" draggable>
-            <v-icon>drag_handle</v-icon>
-          </v-btn>
-        </td>
-        <td v-if="item.leaf" class="expandable-node" :style="nodeStyle(item)">
-          <v-icon>keyboard_arrow_right</v-icon>
-        </td>
-        <td v-else class="expandable-node" @click="toggleNode(item)" :style="nodeStyle(item)">
-          <v-icon>{{expandable_icon(item)}}</v-icon>
-        </td>
-        <slot name="row" :record="item"></slot>
-      </tr>
+        <tr v-if="item.leaf" class="leaf" @dblclick="(e)=>{$emit('dblclick', e, item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, item)}" :key="item.id" :id="item.id" :style="nodeHidden(item)" @dragenter.stop.prevent="dragEnterLeaf($event)" @dragleave.stop.prevent="dragLeaveLeaf($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverLeaf($event)">
+          <td class="px-1" style="width: 0.1%">
+            <v-btn style="cursor: move" icon class="sort-handle" @dragstart.stop="dragStart($event)" @dragend.stop.prevent="dragEnd" draggable>
+              <v-icon>drag_handle</v-icon>
+            </v-btn>
+          </td>
+          <td v-if="item.leaf" class="expandable-node" :style="nodeStyle(item)">
+            <v-icon>keyboard_arrow_right</v-icon>
+          </td>
+          <td v-else class="expandable-node" @click="toggleNode(item)" :style="nodeStyle(item)">
+            <v-icon>{{expandable_icon(item)}}</v-icon>
+          </td>
+          <slot name="row" :record="item"></slot>
+        </tr>
 
-      <tr v-if="!item.leaf" class="folder" @dblclick="(e)=>{$emit('dblclick', e, item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, item)}" :key="item.id" :id="item.id" :style="nodeHidden(item)" @dragenter.stop.prevent="dragEnterFolder($event)" @dragleave.stop.prevent="dragLeaveFolder($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverFolder($event)">
-        <td class="px-1" style="width: 0.1%">
-          <v-btn style="cursor: move" icon class="sort-handle" @dragstart.stop="dragStart($event)" @dragend.stop.prevent="dragEnd" draggable>
-            <v-icon>drag_handle</v-icon>
-          </v-btn>
-        </td>
-        <td v-if="item.leaf" class="expandable-node" :style="nodeStyle(item)">
-          <v-icon>keyboard_arrow_right</v-icon>
-        </td>
-        <td v-else class="expandable-node" @click="toggleNode(item)" :style="nodeStyle(item)">
-          <v-icon>{{expandable_icon(item)}}</v-icon>
-        </td>
-        <slot name="row" :record="item"></slot>
-      </tr>
+        <tr v-if="!item.leaf" class="folder" @dblclick="(e)=>{$emit('dblclick', e, item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, item)}" :key="item.id" :id="item.id" :style="nodeHidden(item)" @dragenter.stop.prevent="dragEnterFolder($event)" @dragleave.stop.prevent="dragLeaveFolder($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverFolder($event)">
+          <td class="px-1" style="width: 0.1%">
+            <v-btn style="cursor: move" icon class="sort-handle" @dragstart.stop="dragStart($event)" @dragend.stop.prevent="dragEnd" draggable>
+              <v-icon>drag_handle</v-icon>
+            </v-btn>
+          </td>
+          <td v-if="item.leaf" class="expandable-node" :style="nodeStyle(item)">
+            <v-icon>keyboard_arrow_right</v-icon>
+          </td>
+          <td v-else class="expandable-node" @click="toggleNode(item)" :style="nodeStyle(item)">
+            <v-icon>{{expandable_icon(item)}}</v-icon>
+          </td>
+          <slot name="row" :record="item"></slot>
+        </tr>
 
-      <tr class="drop-row inactive" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
-        <td :colspan="computedHeaders.length"></td>
-      </tr>
-    </template>
-  </v-data-table>
+        <tr class="drop-row inactive" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
+          <td :colspan="computedHeaders.length"></td>
+        </tr>
+      </template>
+    </v-data-table>
+  </div>
 </template>
 
 <script>
@@ -586,28 +588,28 @@ export default {
 };
 </script>
 
-<style scoped>
-.folder {
+<style>
+.v-tree-data-table .folder {
   cursor: pointer;
 }
-.drag * {
+.v-tree-data-table .drag * {
   pointer-events: none;
 }
-.inactive {
+.v-tree-data-table .inactive {
   border: none !important;
   height: 5px;
   background-color: transparent !important;
 }
-.inactive td {
+.v-tree-data-table .inactive td {
   height: 5px !important;
 }
-.active {
+.v-tree-data-table .active {
   background-color: green !important;
 }
-.active td {
+.v-tree-data-table .active td {
   height: 15px !important;
 }
-.sort-handle {
+.v-tree-data-table .sort-handle {
   cursor: move;
 }
 </style>
