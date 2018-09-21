@@ -314,12 +314,14 @@ module.exports = Symbol;
 
       this.overFolder = $target.parents('.folder')[0];
 
-      if (this.draggedNode.parentNode) {
-        if ($target.parents('.folder').attr('id') != this.draggedNode.parentNode.id && $target.parents('.folder').attr('id') != this.draggedNode.id) {
+      if (this.overFolder) {
+        if (this.draggedNode && this.draggedNode.parentNode) {
+          if ($target.parents('.folder').attr('id') != this.draggedNode.parentNode.id && $target.parents('.folder').attr('id') != this.draggedNode.id) {
+            $target.parents('.folder').addClass('active');
+          }
+        } else if ($target.parents('.folder').attr('id') != this.draggedNode.id) {
           $target.parents('.folder').addClass('active');
         }
-      } else if ($target.parents('.folder').attr('id') != this.draggedNode.id) {
-        $target.parents('.folder').addClass('active');
       }
     },
 
@@ -400,7 +402,7 @@ module.exports = Symbol;
     dragOverLeaf(event) {
       const $target = $(event.target);
 
-      if (this.draggedNode.parentNode) {
+      if (this.draggedNode && this.draggedNode.parentNode) {
         if ($target.parents('.leaf').attr('id') != this.draggedNode.parentNode.id && $target.parents('.leaf').attr('id') != this.draggedNode.id) {
           event.preventDefault();
         }
