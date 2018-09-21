@@ -337,9 +337,9 @@ export default {
           $target.parents('.leaf').attr('id') != this.draggedNode.id
         ) {
           $target.parents('.leaf').addClass('active');
+        } else if ($target.parents('.leaf').attr('id') != this.draggedNode.id) {
+          $target.parents('.leaf').addClass('active');
         }
-      } else if ($target.parents('.leaf').attr('id') != this.draggedNode.id) {
-        $target.parents('.leaf').addClass('active');
       }
     },
 
@@ -365,16 +365,18 @@ export default {
     dragOverLeaf(event) {
       const $target = $(event.target);
 
-      if (this.draggedNode && this.draggedNode.parentNode) {
-        if (
-          $target.parents('.leaf').attr('id') !=
-            this.draggedNode.parentNode.id &&
-          $target.parents('.leaf').attr('id') != this.draggedNode.id
-        ) {
+      if (this.draggedNode) {
+        if (this.draggedNode.parentNode) {
+          if (
+            $target.parents('.leaf').attr('id') !=
+              this.draggedNode.parentNode.id &&
+            $target.parents('.leaf').attr('id') != this.draggedNode.id
+          ) {
+            event.preventDefault();
+          }
+        } else if ($target.parents('.leaf').attr('id') != this.draggedNode.id) {
           event.preventDefault();
         }
-      } else if ($target.parents('.leaf').attr('id') != this.draggedNode.id) {
-        event.preventDefault();
       }
     },
 
