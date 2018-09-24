@@ -39,9 +39,9 @@
           <td :colspan="computedHeaders.length"></td>
         </tr>
 
-        <tr v-if="props.item.leaf" class="leaf" :active="props.selected" @click="props.selected = !props.selected" @dblclick="(e)=>{$emit('dblclick', e, props.item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, props.item)}" :key="props.item.id" :id="props.item.id" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterLeaf($event)" @dragleave.stop.prevent="dragLeaveLeaf($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverLeaf($event)">
+        <tr v-if="props.item.leaf" class="leaf" :active="props.selected" @dblclick="(e)=>{$emit('dblclick', e, props.item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, props.item)}" :key="props.item.id" :id="props.item.id" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterLeaf($event)" @dragleave.stop.prevent="dragLeaveLeaf($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverLeaf($event)">
           <td v-if="selectAll">
-            <v-checkbox :input-value="props.selected" primary hide-details></v-checkbox>
+            <v-checkbox @click="props.selected = !props.selected" :input-value="props.selected" primary hide-details></v-checkbox>
           </td>
           <td class="px-1" style="width: 0.1%">
             <v-btn style="cursor: move" icon class="sort-handle" @dragstart.stop="dragStart($event)" @dragend.stop.prevent="dragEnd" draggable>
@@ -57,9 +57,9 @@
           <slot name="row" v-bind="props"></slot>
         </tr>
 
-        <tr v-if="!props.item.leaf" class="folder" :active="props.selected" @click="props.selected = !props.selected" @dblclick="(e)=>{$emit('dblclick', e, props.item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, props.item)}" :key="props.item.id" :id="props.item.id" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterFolder($event)" @dragleave.stop.prevent="dragLeaveFolder($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverFolder($event)">
+        <tr v-if="!props.item.leaf" class="folder" :active="props.selected" @dblclick="(e)=>{$emit('dblclick', e, props.item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, props.item)}" :key="props.item.id" :id="props.item.id" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterFolder($event)" @dragleave.stop.prevent="dragLeaveFolder($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverFolder($event)">
           <td>
-            <v-checkbox :input-value="props.selected" primary hide-details></v-checkbox>
+            <v-checkbox @click="props.selected = !props.selected" :input-value="props.selected" primary hide-details></v-checkbox>
           </td>
           <td class="px-1" style="width: 0.1%">
             <v-btn style="cursor: move" icon class="sort-handle" @dragstart.stop="dragStart($event)" @dragend.stop.prevent="dragEnd" draggable>

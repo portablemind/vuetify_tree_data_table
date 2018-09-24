@@ -1827,9 +1827,6 @@ var render = function() {
                           style: _vm.nodeHidden(props.item),
                           attrs: { active: props.selected, id: props.item.id },
                           on: {
-                            click: function($event) {
-                              props.selected = !props.selected
-                            },
                             dblclick: function(e) {
                               _vm.$emit("dblclick", e, props.item)
                             },
@@ -1870,6 +1867,11 @@ var render = function() {
                                       "input-value": props.selected,
                                       primary: "",
                                       "hide-details": ""
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        props.selected = !props.selected
+                                      }
                                     }
                                   })
                                 ],
@@ -1957,9 +1959,6 @@ var render = function() {
                           style: _vm.nodeHidden(props.item),
                           attrs: { active: props.selected, id: props.item.id },
                           on: {
-                            click: function($event) {
-                              props.selected = !props.selected
-                            },
                             dblclick: function(e) {
                               _vm.$emit("dblclick", e, props.item)
                             },
@@ -1999,6 +1998,11 @@ var render = function() {
                                   "input-value": props.selected,
                                   primary: "",
                                   "hide-details": ""
+                                },
+                                on: {
+                                  click: function($event) {
+                                    props.selected = !props.selected
+                                  }
                                 }
                               })
                             ],
