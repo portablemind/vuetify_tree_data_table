@@ -4,40 +4,75 @@
 
 <template>
   <div class="v-tree-data-table">
-    <v-data-table ref="dataTable" :headers="computedHeaders" :items="flattenedNodes" :pagination.sync="internalPagination" :total-items="totalItems" :loading="loading">
-      <template slot="items" slot-scope="{ item, index }">
-        <tr v-if="index == 0" class="drop-row inactive" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
+    <v-data-table ref="dataTable" v-model="selected" :select-all="selectAll" :rows-per-page-text="rowsPerPageText" :rows-per-page-items="rowsPerPageItems" :headers="computedHeaders" :items="flattenedNodes" :pagination.sync="internalPagination" :total-items="totalItems" :loading="loading">
+      <template slot="no-data">
+        <slot name="no-data">
+          <tr>
+            <td :colspan="headers.length + (selectAll ? 1 : 0)" class="text-xs-center">
+              No matching records found
+            </td>
+          </tr>
+        </slot>
+      </template>
+
+      <template slot="headers" slot-scope="props">
+        <slot name="headers" :props="props">
+          <tr>
+            <th v-if="selectAll" width="100px">
+              <v-checkbox :input-value="props.all" :indeterminate="props.indeterminate" primary hide-details @click.native="toggleSelectAll"></v-checkbox>
+            </th>
+            <template v-for="header in props.headers">
+              <th v-if="header.sortable" :key="header.text" :class="['column sortable', pagination.descending ? 'desc' : 'asc', header.value === pagination.sortBy ? 'active' : '', `text-xs-${header.align || 'left'}`]" @click="changeSort(header.value)">
+                <v-icon small>arrow_upward</v-icon>
+                {{ header.text }}
+              </th>
+              <th v-else :key="header.text" :class="`text-xs-${header.align || 'left'}`">
+                {{ header.text }}
+              </th>
+            </template>
+          </tr>
+        </slot>
+      </template>
+
+      <template slot="items" slot-scope="props">
+        <tr v-if="props.index == 0" class="drop-row inactive" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
           <td :colspan="computedHeaders.length"></td>
         </tr>
 
-        <tr v-if="item.leaf" class="leaf" @dblclick="(e)=>{$emit('dblclick', e, item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, item)}" :key="item.id" :id="item.id" :style="nodeHidden(item)" @dragenter.stop.prevent="dragEnterLeaf($event)" @dragleave.stop.prevent="dragLeaveLeaf($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverLeaf($event)">
+        <tr v-if="props.item.leaf" class="leaf" :active="props.selected" @click="props.selected = !props.selected" @dblclick="(e)=>{$emit('dblclick', e, props.item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, props.item)}" :key="props.item.id" :id="props.item.id" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterLeaf($event)" @dragleave.stop.prevent="dragLeaveLeaf($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverLeaf($event)">
+          <td>
+            <v-checkbox :input-value="props.selected" primary hide-details></v-checkbox>
+          </td>
           <td class="px-1" style="width: 0.1%">
             <v-btn style="cursor: move" icon class="sort-handle" @dragstart.stop="dragStart($event)" @dragend.stop.prevent="dragEnd" draggable>
               <v-icon>drag_handle</v-icon>
             </v-btn>
           </td>
-          <td v-if="item.leaf" class="expandable-node" :style="nodeStyle(item)">
+          <td v-if="props.item.leaf" class="expandable-node" :style="nodeStyle(props.item)">
             <v-icon>keyboard_arrow_right</v-icon>
           </td>
-          <td v-else class="expandable-node" @click="toggleNode(item)" :style="nodeStyle(item)">
-            <v-icon>{{expandable_icon(item)}}</v-icon>
+          <td v-else class="expandable-node" @click="toggleNode(props.item)" :style="nodeStyle(props.item)">
+            <v-icon>{{expandable_icon(props.item)}}</v-icon>
           </td>
-          <slot name="row" :record="item"></slot>
+          <slot name="row" v-bind="props"></slot>
         </tr>
 
-        <tr v-if="!item.leaf" class="folder" @dblclick="(e)=>{$emit('dblclick', e, item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, item)}" :key="item.id" :id="item.id" :style="nodeHidden(item)" @dragenter.stop.prevent="dragEnterFolder($event)" @dragleave.stop.prevent="dragLeaveFolder($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverFolder($event)">
+        <tr v-if="!props.item.leaf" class="folder" :active="props.selected" @click="props.selected = !props.selected" @dblclick="(e)=>{$emit('dblclick', e, props.item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, item)}" :key="item.id" :id="item.id" :style="nodeHidden(item)" @dragenter.stop.prevent="dragEnterFolder($event)" @dragleave.stop.prevent="dragLeaveFolder($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverFolder($event)">
+          <td>
+            <v-checkbox :input-value="props.selected" primary hide-details></v-checkbox>
+          </td>
           <td class="px-1" style="width: 0.1%">
             <v-btn style="cursor: move" icon class="sort-handle" @dragstart.stop="dragStart($event)" @dragend.stop.prevent="dragEnd" draggable>
               <v-icon>drag_handle</v-icon>
             </v-btn>
           </td>
-          <td v-if="item.leaf" class="expandable-node" :style="nodeStyle(item)">
+          <td v-if="props.item.leaf" class="expandable-node" :style="nodeStyle(props.item)">
             <v-icon>keyboard_arrow_right</v-icon>
           </td>
-          <td v-else class="expandable-node" @click="toggleNode(item)" :style="nodeStyle(item)">
-            <v-icon>{{expandable_icon(item)}}</v-icon>
+          <td v-else class="expandable-node" @click="toggleNode(props.item)" :style="nodeStyle(props.item)">
+            <v-icon>{{expandable_icon(props.item)}}</v-icon>
           </td>
-          <slot name="row" :record="item"></slot>
+          <slot name="row" v-bind="props"></slot>
         </tr>
 
         <tr class="drop-row inactive" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
@@ -75,6 +110,29 @@ export default {
       type: Boolean,
       required: true,
     },
+    rowsPerPageItems: {
+      type: Array,
+      default: () => {
+        return [
+          5,
+          10,
+          25,
+          { text: '$vuetify.dataIterator.rowsPerPageAll', value: -1 },
+        ];
+      },
+    },
+    rowsPerPageText: {
+      type: String,
+      default: `$vuetify.dataTable.rowsPerPageText`,
+    },
+    selectAll: {
+      type: [Boolean, String],
+      default: undefined,
+    },
+    value: {
+      type: Array,
+      default: [],
+    },
   },
 
   mounted: function() {
@@ -89,6 +147,7 @@ export default {
       overFolder: null,
       draggedNode: null,
       newParentNode: null,
+      selected: [],
     };
   },
 
@@ -99,6 +158,12 @@ export default {
     },
     items() {
       this.flattenNodes();
+    },
+    value() {
+      this.selected = this.value;
+    },
+    selected() {
+      this.$emit('input', this.selected);
     },
   },
 
@@ -117,6 +182,16 @@ export default {
   },
 
   methods: {
+    /**
+     * Fired when select all is toggled
+     */
+    toggleSelectAll() {
+      if (this.selected.length > 0) {
+        this.selected = [];
+      } else {
+        this.selected = this.items;
+      }
+    },
     /*
     Setup drag ghost images
     */
