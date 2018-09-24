@@ -1861,19 +1861,21 @@ var render = function() {
                           }
                         },
                         [
-                          _c(
-                            "td",
-                            [
-                              _c("v-checkbox", {
-                                attrs: {
-                                  "input-value": props.selected,
-                                  primary: "",
-                                  "hide-details": ""
-                                }
-                              })
-                            ],
-                            1
-                          ),
+                          _vm.selectAll
+                            ? _c(
+                                "td",
+                                [
+                                  _c("v-checkbox", {
+                                    attrs: {
+                                      "input-value": props.selected,
+                                      primary: "",
+                                      "hide-details": ""
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "td",
