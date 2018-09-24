@@ -407,6 +407,7 @@ export default {
 
       if (this.draggedNode) {
         if (
+          this.draggedNode.parentNode &&
           $target.parents('.leaf').attr('id') !=
             this.draggedNode.parentNode.id &&
           $target.parents('.leaf').attr('id') != this.draggedNode.id
@@ -566,6 +567,8 @@ export default {
               this.draggedNode.parentNode = null;
               this.draggedNode.depth = 1;
             }
+
+            this.draggedNode.position = 0;
           }
 
           this.flattenedNodes.splice(newIndex, 0, this.draggedNode);
@@ -573,7 +576,7 @@ export default {
 
         this.flattenNodes(this.unFlattenNodes());
 
-        this.$emit('drop', this.draggedNode, oldParent, this.unFlattenNodes());
+        this.$emit('drop', this.draggedNode, oldParent, this.unFlattenNodes);
 
         this.draggedNode = null;
       }
