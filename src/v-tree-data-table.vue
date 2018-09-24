@@ -57,7 +57,7 @@
           <slot name="row" v-bind="props"></slot>
         </tr>
 
-        <tr v-if="!props.item.leaf" class="folder" :active="props.selected" @click="props.selected = !props.selected" @dblclick="(e)=>{$emit('dblclick', e, props.item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, item)}" :key="item.id" :id="item.id" :style="nodeHidden(item)" @dragenter.stop.prevent="dragEnterFolder($event)" @dragleave.stop.prevent="dragLeaveFolder($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverFolder($event)">
+        <tr v-if="!props.item.leaf" class="folder" :active="props.selected" @click="props.selected = !props.selected" @dblclick="(e)=>{$emit('dblclick', e, props.item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, props.item)}" :key="props.item.id" :id="props.item.id" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterFolder($event)" @dragleave.stop.prevent="dragLeaveFolder($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverFolder($event)">
           <td>
             <v-checkbox :input-value="props.selected" primary hide-details></v-checkbox>
           </td>
