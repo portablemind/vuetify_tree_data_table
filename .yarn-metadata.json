@@ -1,7 +1,7 @@
 {
   "manifest": {
     "name": "v-tree-data-table",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "description": "A Data Table with a Tree for Vuetify.",
     "main": "dist/v-tree-data-table.js",
     "scripts": {
@@ -32,12 +32,7 @@
     "bugs": {
       "url": "https://github.com/portablemind/vuetify_tree_data_table/issues"
     },
-    "keywords": [
-      "vuetify",
-      "tree",
-      "data",
-      "table"
-    ],
+    "keywords": ["vuetify", "tree", "data", "table"],
     "devDependencies": {
       "uglifyjs-webpack-plugin": "^1.2.7"
     },
