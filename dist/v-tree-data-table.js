@@ -1862,7 +1862,12 @@ var render = function() {
                         },
                         [
                           _c("td", {
-                            attrs: { colspan: _vm.computedHeaders.length }
+                            attrs: {
+                              colspan:
+                                _vm.computedHeaders.length + _vm.selectAll
+                                  ? 1
+                                  : 0
+                            }
                           })
                         ]
                       )
@@ -2159,7 +2164,10 @@ var render = function() {
                     },
                     [
                       _c("td", {
-                        attrs: { colspan: _vm.computedHeaders.length }
+                        attrs: {
+                          colspan:
+                            _vm.computedHeaders.length + _vm.selectAll ? 1 : 0
+                        }
                       })
                     ]
                   )
