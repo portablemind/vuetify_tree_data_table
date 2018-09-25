@@ -116,9 +116,11 @@ Function that returns true or false if the it is a valid drop.
 
 Arguments
 
+```
 node - Node being dragged
 target - jQuery Wrapped element being dragged over, either a drop zone, folder or leaf
 event - the browser event
+```
 
 # License
 
