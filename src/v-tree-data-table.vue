@@ -18,7 +18,7 @@
       <template slot="headers" slot-scope="props">
         <slot name="headers" :props="props">
           <tr>
-            <th v-if="selectAll" width="100px">
+            <th v-if="selectAll" width="50px">
               <v-checkbox :input-value="props.all" :indeterminate="props.indeterminate" primary hide-details @click.native="toggleSelectAll"></v-checkbox>
             </th>
             <template v-for="header in props.headers">
@@ -35,7 +35,7 @@
       </template>
 
       <template slot="items" slot-scope="props">
-        <tr v-if="props.index == 0" class="drop-row inactive" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
+        <tr v-if="props.index == 0" class="drop-row inactive" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
           <td :colspan="computedHeaders.length"></td>
         </tr>
 
@@ -75,7 +75,7 @@
           <slot name="row" v-bind="props"></slot>
         </tr>
 
-        <tr class="drop-row inactive" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
+        <tr class="drop-row inactive" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
           <td :colspan="computedHeaders.length"></td>
         </tr>
       </template>
@@ -131,7 +131,11 @@ export default {
     },
     value: {
       type: Array,
-      default: [],
+      default: undefined,
+    },
+    validDrop: {
+      type: Function,
+      default: undefined,
     },
   },
 
@@ -253,6 +257,7 @@ export default {
      * @param {Event} event Browser Event
      */
     dragEnterSlot(event) {
+      const vm = this;
       const $target = $(event.target);
 
       this.clearActive();
@@ -262,7 +267,18 @@ export default {
           $target.hasClass('.drop-row')) &&
         this.draggedNode
       ) {
+        let validDrop = true;
+
+        if (this.draggedNode && vm.validDrop) {
+          validDrop = vm.validDrop(
+            this.draggedNode,
+            $target.parents('.drop-row'),
+            event
+          );
+        }
+
         if (
+          validDrop &&
           parseInt(
             $target
               .parents('.drop-row')
@@ -300,9 +316,20 @@ export default {
      * @param {Event} event Browser Event
      */
     dragOverSlot(event) {
+      const vm = this;
       const $target = $(event.target);
+      let validDrop = true;
+
+      if (this.draggedNode && vm.validDrop) {
+        validDrop = vm.validDrop(
+          this.draggedNode,
+          $target.parents('.drop-row'),
+          event
+        );
+      }
 
       if (
+        validDrop &&
         this.draggedNode &&
         parseInt(
           $target
@@ -330,15 +357,27 @@ export default {
      * @param {Event} event Browser Event
      */
     dragEnterFolder(event) {
+      const vm = this;
       const $target = $(event.target);
 
       this.clearActive();
 
       this.overFolder = $target.parents('.folder')[0];
 
+      let validDrop = true;
+
+      if (this.draggedNode && vm.validDrop) {
+        validDrop = vm.validDrop(
+          this.draggedNode,
+          $target.parents('.folder'),
+          event
+        );
+      }
+
       if (this.overFolder) {
         if (this.draggedNode && this.draggedNode.parentNode) {
           if (
+            validDrop &&
             $target.parents('.folder').attr('id') !=
               this.draggedNode.parentNode.id &&
             $target.parents('.folder').attr('id') != this.draggedNode.id
@@ -346,6 +385,7 @@ export default {
             $target.parents('.folder').addClass('active');
           }
         } else if (
+          validDrop &&
           $target.parents('.folder').attr('id') != this.draggedNode.id
         ) {
           $target.parents('.folder').addClass('active');
@@ -373,16 +413,29 @@ export default {
      * @param {Event} event Browser Event
      */
     dragOverFolder(event) {
+      const vm = this;
       const $target = $(event.target);
+      let validDrop = true;
+
+      if (this.draggedNode && vm.validDrop) {
+        validDrop = vm.validDrop(
+          this.draggedNode,
+          $target.parents('.folder'),
+          event
+        );
+      }
 
       if (this.draggedNode) {
         if (
+          validDrop &&
+          this.draggedNode.parentNode &&
           $target.parents('.folder').attr('id') !=
             this.draggedNode.parentNode.id &&
           $target.parents('.folder').attr('id') != this.draggedNode.id
         ) {
           event.preventDefault();
         } else if (
+          validDrop &&
           $target.parents('.folder').attr('id') != this.draggedNode.id
         ) {
           event.preventDefault();
@@ -399,7 +452,17 @@ export default {
      * @param {Event} event Browser Event
      */
     dragEnterLeaf(event) {
+      const vm = this;
       const $target = $(event.target);
+      let validDrop = true;
+
+      if ((this.draggedNode, vm.validDrop)) {
+        validDrop = vm.validDrop(
+          this.draggedNode,
+          $target.parents('.leaf'),
+          event
+        );
+      }
 
       this.clearActive();
 
@@ -407,13 +470,17 @@ export default {
 
       if (this.draggedNode) {
         if (
+          validDrop &&
           this.draggedNode.parentNode &&
           $target.parents('.leaf').attr('id') !=
             this.draggedNode.parentNode.id &&
           $target.parents('.leaf').attr('id') != this.draggedNode.id
         ) {
           $target.parents('.leaf').addClass('active');
-        } else if ($target.parents('.leaf').attr('id') != this.draggedNode.id) {
+        } else if (
+          validDrop &&
+          $target.parents('.leaf').attr('id') != this.draggedNode.id
+        ) {
           $target.parents('.leaf').addClass('active');
         }
       }
@@ -439,18 +506,32 @@ export default {
      * @param {Event} event Browser Event
      */
     dragOverLeaf(event) {
+      const vm = this;
       const $target = $(event.target);
+      let validDrop = true;
+
+      if ((this.draggedNode, vm.validDrop)) {
+        validDrop = vm.validDrop(
+          this.draggedNode,
+          $target.parents('.leaf'),
+          event
+        );
+      }
 
       if (this.draggedNode) {
         if (this.draggedNode.parentNode) {
           if (
+            validDrop &&
             $target.parents('.leaf').attr('id') !=
               this.draggedNode.parentNode.id &&
             $target.parents('.leaf').attr('id') != this.draggedNode.id
           ) {
             event.preventDefault();
           }
-        } else if ($target.parents('.leaf').attr('id') != this.draggedNode.id) {
+        } else if (
+          validDrop &&
+          $target.parents('.leaf').attr('id') != this.draggedNode.id
+        ) {
           event.preventDefault();
         }
       }
@@ -461,6 +542,7 @@ export default {
      * @param {Event} event Browser Event
      */
     dropRow(event) {
+      const vm = this;
       const $target = $(event.target);
 
       if ($target.parents('.folder').length > 0) {
@@ -574,9 +656,19 @@ export default {
           this.flattenedNodes.splice(newIndex, 0, this.draggedNode);
         }
 
+        const currentNodes = this.unFlattenNodes();
+
         this.flattenNodes(this.unFlattenNodes());
 
-        this.$emit('drop', this.draggedNode, oldParent, this.unFlattenNodes);
+        this.$emit(
+          'drop',
+          this.draggedNode,
+          oldParent,
+          this.unFlattenNodes(),
+          () => {
+            this.flattenNodes(currentNodes);
+          }
+        );
 
         this.draggedNode = null;
       }
