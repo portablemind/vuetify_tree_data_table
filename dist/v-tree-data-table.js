@@ -1864,9 +1864,8 @@ var render = function() {
                           _c("td", {
                             attrs: {
                               colspan:
-                                _vm.computedHeaders.length + _vm.selectAll
-                                  ? 1
-                                  : 0
+                                _vm.computedHeaders.length +
+                                (_vm.selectAll ? 1 : 0)
                             }
                           })
                         ]
@@ -2045,24 +2044,26 @@ var render = function() {
                           }
                         },
                         [
-                          _c(
-                            "td",
-                            [
-                              _c("v-checkbox", {
-                                attrs: {
-                                  "input-value": props.selected,
-                                  primary: "",
-                                  "hide-details": ""
-                                },
-                                on: {
-                                  click: function($event) {
-                                    props.selected = !props.selected
-                                  }
-                                }
-                              })
-                            ],
-                            1
-                          ),
+                          _vm.selectAll
+                            ? _c(
+                                "td",
+                                [
+                                  _c("v-checkbox", {
+                                    attrs: {
+                                      "input-value": props.selected,
+                                      primary: "",
+                                      "hide-details": ""
+                                    },
+                                    on: {
+                                      click: function($event) {
+                                        props.selected = !props.selected
+                                      }
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            : _vm._e(),
                           _vm._v(" "),
                           _c(
                             "td",
@@ -2166,7 +2167,7 @@ var render = function() {
                       _c("td", {
                         attrs: {
                           colspan:
-                            _vm.computedHeaders.length + _vm.selectAll ? 1 : 0
+                            _vm.computedHeaders.length + (_vm.selectAll ? 1 : 0)
                         }
                       })
                     ]

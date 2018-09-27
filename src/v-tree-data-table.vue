@@ -36,7 +36,7 @@
 
       <template slot="items" slot-scope="props">
         <tr v-if="props.index == 0" class="drop-row inactive" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
-          <td :colspan="computedHeaders.length + selectAll ? 1 : 0"></td>
+          <td :colspan="computedHeaders.length + (selectAll ? 1 : 0)"></td>
         </tr>
 
         <tr v-if="props.item.leaf" class="leaf" :active="props.selected" @dblclick="(e)=>{$emit('dblclick', e, props.item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, props.item)}" :key="props.item.id" :id="props.item.id" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterLeaf($event)" @dragleave.stop.prevent="dragLeaveLeaf($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverLeaf($event)">
@@ -58,7 +58,7 @@
         </tr>
 
         <tr v-if="!props.item.leaf" class="folder" :active="props.selected" @dblclick="(e)=>{$emit('dblclick', e, props.item)}" @contextmenu.prevent="(e)=>{$emit('contextmenu', e, props.item)}" :key="props.item.id" :id="props.item.id" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterFolder($event)" @dragleave.stop.prevent="dragLeaveFolder($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverFolder($event)">
-          <td>
+          <td v-if="selectAll">
             <v-checkbox @click="props.selected = !props.selected" :input-value="props.selected" primary hide-details></v-checkbox>
           </td>
           <td class="px-1" style="width: 0.1%">
@@ -76,7 +76,7 @@
         </tr>
 
         <tr class="drop-row inactive" :style="nodeHidden(props.item)" @dragenter.stop.prevent="dragEnterSlot($event)" @dragleave.stop.prevent="dragLeaveSlot($event)" @drop.stop.prevent="dropRow($event)" @dragover.stop="dragOverSlot($event)">
-          <td :colspan="computedHeaders.length + selectAll ? 1 : 0"></td>
+          <td :colspan="computedHeaders.length + (selectAll ? 1 : 0)"></td>
         </tr>
       </template>
     </v-data-table>

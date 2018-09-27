@@ -1,7 +1,7 @@
 {
   "manifest": {
     "name": "v-tree-data-table",
-    "version": "1.0.12",
+    "version": "1.0.13",
     "description": "A Data Table with a Tree for Vuetify.",
     "main": "dist/v-tree-data-table.js",
     "scripts": {
@@ -45,9 +45,9 @@
   "remote": {
     "type": "copy",
     "registry": "npm",
-    "hash": "b07873a7-7f0f-40f1-a214-3113c3b34ee8-1537916496973",
+    "hash": "e0420efd-fed9-408e-80c8-a113a2467f13-1538053123587",
     "reference": "/Users/russellholmes/Desktop/saas_instances/vuejs/lib/vuetify_tree_data_table"
   },
   "registry": "npm",
-  "hash": "b07873a7-7f0f-40f1-a214-3113c3b34ee8-1537916496973"
+  "hash": "e0420efd-fed9-408e-80c8-a113a2467f13-1538053123587"
 }
