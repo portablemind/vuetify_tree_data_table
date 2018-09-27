@@ -619,7 +619,7 @@ module.exports = Symbol;
 
         this.flattenNodes(this.unFlattenNodes());
 
-        this.$emit('drop', this.draggedNode, oldParent, this.unFlattenNodes(), () => {
+        this.$emit('drop', this.draggedNode, oldParent, this.draggedNode.parentNode, this.previousSibling, this.nextSibling, this.unFlattenNodes(), () => {
           this.flattenNodes(currentNodes);
         });
 

@@ -664,6 +664,9 @@ export default {
           'drop',
           this.draggedNode,
           oldParent,
+          this.draggedNode.parentNode,
+          this.previousSibling,
+          this.nextSibling,
           this.unFlattenNodes(),
           () => {
             this.flattenNodes(currentNodes);
