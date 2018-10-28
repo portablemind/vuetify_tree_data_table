@@ -628,10 +628,19 @@ module.exports = Symbol;
     },
 
     /**
+     * Find the node in items
+     * @param {String | Number} nodeId The Node
+     * @return {Object} the Node
+     */
+    findNode(nodeId) {
+      __WEBPACK_IMPORTED_MODULE_0__nodeHelper_js__["a" /* default */].findNode(nodeId, this.items);
+    },
+
+    /**
      * Get the icon for the node
      * @param {Object} node The Node
      */
-    expandable_icon(node) {
+    expandableIcon(node) {
       if (node.expanded) {
         return 'folder_open';
       } else {
@@ -1301,10 +1310,34 @@ const moveNode = (node, newParentNode) => {
   node.parentNode = newParentNode;
 };
 
+/**
+ * Find a node in the tree
+ * @param {String | Number} nodeId Id of node to find
+ * @param {Array} Array of nodes to look in
+ */
+const findNode = (nodeId, nodes) => {
+  for (var i = 0; i < nodes.length; i++) {
+    var _node = nodes[i];
+
+    if (_node.id == nodeId) {
+      return _node;
+    }
+
+    if (_node.children) {
+      let foundNode = findNode(nodeId, _node.children);
+
+      if (foundNode) {
+        return foundNode;
+      }
+    }
+  }
+};
+
 /* harmony default export */ __webpack_exports__["a"] = ({
   moveNode,
   flattenNodes,
-  unFlattenNodes
+  unFlattenNodes,
+  findNode
 });
 
 /***/ }),
@@ -1991,7 +2024,7 @@ var render = function() {
                                 [
                                   _c("v-icon", [
                                     _vm._v(
-                                      _vm._s(_vm.expandable_icon(props.item))
+                                      _vm._s(_vm.expandableIcon(props.item))
                                     )
                                   ])
                                 ],
@@ -2123,7 +2156,7 @@ var render = function() {
                                 [
                                   _c("v-icon", [
                                     _vm._v(
-                                      _vm._s(_vm.expandable_icon(props.item))
+                                      _vm._s(_vm.expandableIcon(props.item))
                                     )
                                   ])
                                 ],
