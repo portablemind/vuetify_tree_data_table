@@ -1,7 +1,7 @@
 {
   "manifest": {
     "name": "v-tree-data-table",
-    "version": "1.0.14",
+    "version": "1.0.15",
     "description": "A Data Table with a Tree for Vuetify.",
     "main": "dist/v-tree-data-table.js",
     "scripts": {
