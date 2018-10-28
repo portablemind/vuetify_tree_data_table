@@ -90,8 +90,32 @@ const moveNode = (node, newParentNode) => {
   node.parentNode = newParentNode;
 };
 
+/**
+ * Find a node in the tree
+ * @param {String | Number} nodeId Id of node to find
+ * @param {Array} Array of nodes to look in
+ */
+const findNode = (nodeId, nodes) => {
+  for (var i = 0; i < nodes.length; i++) {
+    var _node = nodes[i];
+
+    if (_node.id == nodeId) {
+      return _node;
+    }
+
+    if (_node.children) {
+      let foundNode = findNode(nodeId, _node.children);
+
+      if (foundNode) {
+        return foundNode;
+      }
+    }
+  }
+};
+
 export default {
   moveNode,
   flattenNodes,
   unFlattenNodes,
+  findNode,
 };

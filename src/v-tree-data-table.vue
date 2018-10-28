@@ -52,7 +52,7 @@
             <v-icon>keyboard_arrow_right</v-icon>
           </td>
           <td v-else class="expandable-node" @click="toggleNode(props.item)" :style="nodeStyle(props.item)">
-            <v-icon>{{expandable_icon(props.item)}}</v-icon>
+            <v-icon>{{expandableIcon(props.item)}}</v-icon>
           </td>
           <slot name="row" v-bind="props"></slot>
         </tr>
@@ -70,7 +70,7 @@
             <v-icon>keyboard_arrow_right</v-icon>
           </td>
           <td v-else class="expandable-node" @click="toggleNode(props.item)" :style="nodeStyle(props.item)">
-            <v-icon>{{expandable_icon(props.item)}}</v-icon>
+            <v-icon>{{expandableIcon(props.item)}}</v-icon>
           </td>
           <slot name="row" v-bind="props"></slot>
         </tr>
@@ -678,10 +678,19 @@ export default {
     },
 
     /**
+     * Find the node in items
+     * @param {String | Number} nodeId The Node
+     * @return {Object} the Node
+     */
+    findNode(nodeId) {
+      nodeHelper.findNode(nodeId, this.items);
+    },
+
+    /**
      * Get the icon for the node
      * @param {Object} node The Node
      */
-    expandable_icon(node) {
+    expandableIcon(node) {
       if (node.expanded) {
         return 'folder_open';
       } else {
