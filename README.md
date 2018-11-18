@@ -99,6 +99,7 @@ node - Node record that was toggled
 
 ## Example
 
+To run the example, simple clone down repo and open index.html in a browser.
 
 
 # License
