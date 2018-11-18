@@ -101,6 +101,7 @@ node - Node record that was toggled
 
 To run the example, simple clone down repo and open index.html in a browser.
 
+![](TreeGrid.gif)
 
 # License
 
