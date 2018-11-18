@@ -1,5 +1,7 @@
 # Vuetify Tree Data Table
 
+![](TreeGrid.gif)
+
 Tree functionality added to the Vuetify Data Table. Supports DnD sorting and moving nodes to new parents.
 
 You must have Vuetify loaded to use this component.
@@ -100,8 +102,6 @@ node - Node record that was toggled
 ## Example
 
 To run the example, simple clone down repo and open index.html in a browser.
-
-![](TreeGrid.gif)
 
 # License
 
