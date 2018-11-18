@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>v-tree-data-table example</title>
+    <link
+      href='https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900|Material+Icons'
+      rel="stylesheet">
+  </head>
+  <body>
+    <div id="app" data-app="true">
+      <v-tree-data-table :headers="headers" :items="items" :pagination="pagination" :loading="loading" :total-items="totalItems" @load="load">
+        <template slot="row" slot-scope="props">
+          <td>{{props.item.name}}</td>
+          <td>{{props.item.description}}</td>
+        </template>
+      </v-tree-data-table>
+    </div>
+
+    <script src="./dist/example.js" type="text/javascript"></script>
+  </body>
+</html>

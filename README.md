@@ -27,100 +27,79 @@ Vue.component('v-tree-data-table', TreeDataTable);
 
 ## Props
 
-### headers
+| Prop             | Type              | Required | Usage                                                                                                                                                                                                                      |
+| ---------------- | ----------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| headers          | Array             | Yes      | Headers for the v-data-table                                                                                                                                                                                               |
+| items            | Array             | Yes      | items for the v-data-table, should contain tree data. (expanded, children, loaded, depth)                                                                                                                                  |
+| pagination       | Object            | Yes      | Pagination object for the v-data-table                                                                                                                                                                                     |
+| totalItems       | Number            | Yes      | total-items for v-data-table                                                                                                                                                                                               |
+| loading          | Boolean           | Yes      | If the data is being loaded                                                                                                                                                                                                |
+| rowsPerPageItems | Array             | No       | Passed through to for v-data-table                                                                                                                                                                                         |
+| rowsPerPageText  | String            | No       | Passed through to for v-data-table                                                                                                                                                                                         |
+| selectAll        | [Boolean, String] | No       | select-all for v-data-table                                                                                                                                                                                                |
+| validDrop        | Function          | No       | Function that returns true or false if it is a valid drop. |
 
-```
-type: Array
-required: true
-```
+## Emits
 
-Headers for the v-data-table
+### dblclick
 
-### items
+When a row is double clicked
 
-```
-type: Array
-required: true
-```
+#### Arguments
 
-items for the v-data-table, should contain tree data. (expanded, children, loaded, depth)
+event - Browser event
+node - Node that was clicked
 
-### pagination
+### contextmenu
 
-```
-type: Object
-required: true
-```
+Mouse right click
 
-Pagination object for the v-data-table
+### Arguments
 
-### totalItems
+event - Browser event
+node - Node that was clicked
 
-```
-type: Number
-required: true
-```
+### load
 
-total-items for v-data-table
+Called when the data should be reloaded into the items property
 
-### loading
+#### Arguments
 
-```
-type: Boolean
-required: true
-```
+pagination - Pagination data from v-data-table
 
-### rowsPerPageItems: {
+### input
 
-```
-type: Array,
-default: () => {
-        return [
-          5,
-          10,
-          25,
-          { text: '$vuetify.dataIterator.rowsPerPageAll', value: -1 },
-        ];
-      },
-    }
-```
+#### Arguments
 
-rows-per-page-items for v-data-table
+selected - Selected Node
 
-### rowsPerPageText:
+When a row is selected
 
-```
-type: String,
-default: `$vuetify.dataTable.rowsPerPageText`,
-```
+### drop
 
-rows-per-page-text for v-data-table
+When a node is dropped
 
-### selectAll:
+#### Arguments
 
-```
-type: [Boolean, String],
-default: undefined,
-```
+node - Node that was dropped
+oldParent - The previous parent of the node
+parentNode - The new parent of the node
+previousSibling - The previous sibling of the node
+nextSibling - The next sibling of the node
+nodes - All nodes
+revert - Function to revert drop
 
-select-all for v-data-table
+### node-toggle
 
-### validDrop:
+When a node is toggled
 
-```
-type: Function,
-default: undefined,
-```
+#### Arguments
 
-Function that returns true or false if the it is a valid drop.
+node - Node record that was toggled
 
-Arguments
+## Example
 
-```
-node - Node being dragged
-target - jQuery Wrapped element being dragged over, either a drop zone, folder or leaf
-event - the browser event
-```
+
 
 # License
 

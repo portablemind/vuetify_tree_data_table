@@ -206,7 +206,7 @@ module.exports = Symbol;
     rowsPerPageItems: {
       type: Array,
       default: () => {
-        return [5, 10, 25, { text: '$vuetify.dataIterator.rowsPerPageAll', value: -1 }];
+        return [5, 10, 25, { text: "$vuetify.dataIterator.rowsPerPageAll", value: -1 }];
       }
     },
     rowsPerPageText: {
@@ -246,7 +246,7 @@ module.exports = Symbol;
   watch: {
     internalPagination() {
       // when pagination is changed emit a load
-      this.$emit('load', this.internalPagination);
+      this.$emit("load", this.internalPagination);
     },
     items() {
       this.flattenNodes();
@@ -255,7 +255,7 @@ module.exports = Symbol;
       this.selected = this.value;
     },
     selected() {
-      this.$emit('input', this.selected);
+      this.$emit("input", this.selected);
     }
   },
 
@@ -264,8 +264,14 @@ module.exports = Symbol;
       let headers = this.headers;
 
       headers.unshift({
-        text: ' ',
-        value: 'sortable',
+        text: "",
+        value: "expanded",
+        sortable: false
+      });
+
+      headers.unshift({
+        text: " ",
+        value: "sortable",
         sortable: false
       });
 
@@ -289,19 +295,19 @@ module.exports = Symbol;
     */
     setupDragGhosts: function () {
       this.folderClosedDragGhost = new Image();
-      this.folderClosedDragGhost.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBCADWj9yyAAAAu0lEQVQ4y+2SoQ6CUBSGv3txXDdnkKQ0M0W5L+BD2Ay+h02fwDcw2Y0m5wsAyWKy0WgGYICFWZQBwY3g/7d//3d2znagcxJzRlxwLWG+syKPgrQK6AWAXrPBpiizTOzZuvhfAQO04sQUE1W6LxYT6V8/y5oQAXrInXHd7sVTLL0zyMbHDjhoswUAgGoL8Ad+B+Si+W+DBBmTNapnxGBAmNkRDoqYpNIpD3aeB2KGwxFtYdbMT7xoxY0O6gWXGzUrgZScUAAAAABJRU5ErkJggg==';
-      this.folderClosedDragGhost.height = '24';
-      this.folderClosedDragGhost.width = '24';
+      this.folderClosedDragGhost.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBCADWj9yyAAAAu0lEQVQ4y+2SoQ6CUBSGv3txXDdnkKQ0M0W5L+BD2Ay+h02fwDcw2Y0m5wsAyWKy0WgGYICFWZQBwY3g/7d//3d2znagcxJzRlxwLWG+syKPgrQK6AWAXrPBpiizTOzZuvhfAQO04sQUE1W6LxYT6V8/y5oQAXrInXHd7sVTLL0zyMbHDjhoswUAgGoL8Ad+B+Si+W+DBBmTNapnxGBAmNkRDoqYpNIpD3aeB2KGwxFtYdbMT7xoxY0O6gWXGzUrgZScUAAAAABJRU5ErkJggg==";
+      this.folderClosedDragGhost.height = "24";
+      this.folderClosedDragGhost.width = "24";
 
       this.folderOpenDragGhost = new Image();
-      this.folderOpenDragGhost.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBDiyyDRfXAAAAe0lEQVQ4y2NgGPqAkYGBgcHYm2ElAzdC8H/DuUZcGpgZGBgYpC4gK2dgYHSQZHx+AJ8N/4lwy1eGiLNbGBiYYK4gqIGLYQ0DAwMDC8yms4z41Rv/Z2BnYEDYQDQY1TA4NEBi+gcDO8H09J/hJ8KGUIZvBI3+xhDKMEwAADaQFZcd2zJpAAAAAElFTkSuQmCC';
-      this.folderOpenDragGhost.height = '24';
-      this.folderOpenDragGhost.width = '24';
+      this.folderOpenDragGhost.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBDiyyDRfXAAAAe0lEQVQ4y2NgGPqAkYGBgcHYm2ElAzdC8H/DuUZcGpgZGBgYpC4gK2dgYHSQZHx+AJ8N/4lwy1eGiLNbGBiYYK4gqIGLYQ0DAwMDC8yms4z41Rv/Z2BnYEDYQDQY1TA4NEBi+gcDO8H09J/hJ8KGUIZvBI3+xhDKMEwAADaQFZcd2zJpAAAAAElFTkSuQmCC";
+      this.folderOpenDragGhost.height = "24";
+      this.folderOpenDragGhost.width = "24";
 
       this.leafDragGhost = new Image();
-      this.leafDragGhost.src = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBCCN06K3AAAAAZElEQVQ4y+3TsQmAUAxF0avD/EYEzRvBLSzEHdSRFK0dMPaC8INgZcpwTxMI/AMVAE2E2Gp7gFiSy20LkFZxYl8Q1XK5Hfd9+Sg6gOLMvdUkl1ufm8+xfAnlSqEcwAaN/0+9mwuzISU1axeSPQAAAABJRU5ErkJggg==';
-      this.leafDragGhost.height = '24';
-      this.leafDragGhost.width = '24';
+      this.leafDragGhost.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBCCN06K3AAAAAZElEQVQ4y+3TsQmAUAxF0avD/EYEzRvBLSzEHdSRFK0dMPaC8INgZcpwTxMI/AMVAE2E2Gp7gFiSy20LkFZxYl8Q1XK5Hfd9+Sg6gOLMvdUkl1ufm8+xfAnlSqEcwAaN/0+9mwuzISU1axeSPQAAAABJRU5ErkJggg==";
+      this.leafDragGhost.height = "24";
+      this.leafDragGhost.width = "24";
     },
 
     /**
@@ -309,7 +315,7 @@ module.exports = Symbol;
      * @param {Event} event Browser Event
      */
     dragStart(event) {
-      const draggedNodeId = $(event.target).closest('tr').attr('id');
+      const draggedNodeId = $(event.target).closest("tr").attr("id");
 
       this.draggedNode = this.flattenedNodes.filter(_node => {
         return _node.id == draggedNodeId;
@@ -345,16 +351,16 @@ module.exports = Symbol;
 
       this.clearActive();
 
-      if (($target.parents('.drop-row').length > 0 || $target.hasClass('.drop-row')) && this.draggedNode) {
+      if (($target.parents(".drop-row").length > 0 || $target.hasClass(".drop-row")) && this.draggedNode) {
         let validDrop = true;
 
         if (this.draggedNode && vm.validDrop) {
-          validDrop = vm.validDrop(this.draggedNode, $target.parents('.drop-row'), event);
+          validDrop = vm.validDrop(this.draggedNode, $target.parents(".drop-row"), event);
         }
 
-        if (validDrop && parseInt($target.parents('.drop-row').prev().attr('id')) != this.draggedNode.id && parseInt($target.parents('.drop-row').next().attr('id')) != this.draggedNode.id) {
-          $target.parents('.drop-row').removeClass('inactive');
-          $target.parents('.drop-row').addClass('active');
+        if (validDrop && parseInt($target.parents(".drop-row").prev().attr("id")) != this.draggedNode.id && parseInt($target.parents(".drop-row").next().attr("id")) != this.draggedNode.id) {
+          $target.parents(".drop-row").removeClass("inactive");
+          $target.parents(".drop-row").addClass("active");
         }
       }
     },
@@ -364,8 +370,8 @@ module.exports = Symbol;
      * @param {Event} event Browser Event
      */
     dragLeaveSlot(event) {
-      $(event.target).parents('.drop-row').removeClass('active');
-      $(event.target).parents('.drop-row').addClass('inactive');
+      $(event.target).parents(".drop-row").removeClass("active");
+      $(event.target).parents(".drop-row").addClass("inactive");
     },
 
     /**
@@ -378,10 +384,10 @@ module.exports = Symbol;
       let validDrop = true;
 
       if (this.draggedNode && vm.validDrop) {
-        validDrop = vm.validDrop(this.draggedNode, $target.parents('.drop-row'), event);
+        validDrop = vm.validDrop(this.draggedNode, $target.parents(".drop-row"), event);
       }
 
-      if (validDrop && this.draggedNode && parseInt($target.parents('.drop-row').prev().attr('id')) != this.draggedNode.id && parseInt($target.parents('.drop-row').next().attr('id')) != this.draggedNode.id) {
+      if (validDrop && this.draggedNode && parseInt($target.parents(".drop-row").prev().attr("id")) != this.draggedNode.id && parseInt($target.parents(".drop-row").next().attr("id")) != this.draggedNode.id) {
         event.preventDefault();
       }
     },
@@ -400,21 +406,21 @@ module.exports = Symbol;
 
       this.clearActive();
 
-      this.overFolder = $target.parents('.folder')[0];
+      this.overFolder = $target.parents(".folder")[0];
 
       let validDrop = true;
 
       if (this.draggedNode && vm.validDrop) {
-        validDrop = vm.validDrop(this.draggedNode, $target.parents('.folder'), event);
+        validDrop = vm.validDrop(this.draggedNode, $target.parents(".folder"), event);
       }
 
       if (this.overFolder) {
         if (this.draggedNode && this.draggedNode.parentNode) {
-          if (validDrop && $target.parents('.folder').attr('id') != this.draggedNode.parentNode.id && $target.parents('.folder').attr('id') != this.draggedNode.id) {
-            $target.parents('.folder').addClass('active');
+          if (validDrop && $target.parents(".folder").attr("id") != this.draggedNode.parentNode.id && $target.parents(".folder").attr("id") != this.draggedNode.id) {
+            $target.parents(".folder").addClass("active");
           }
-        } else if (validDrop && $target.parents('.folder').attr('id') != this.draggedNode.id) {
-          $target.parents('.folder').addClass('active');
+        } else if (validDrop && $target.parents(".folder").attr("id") != this.draggedNode.id) {
+          $target.parents(".folder").addClass("active");
         }
       }
     },
@@ -428,7 +434,7 @@ module.exports = Symbol;
 
       if (this.overFolder) {
         if (!$.contains(this.overFolder, $target[0])) {
-          $(this.overFolder).removeClass('active');
+          $(this.overFolder).removeClass("active");
           this.overFolder = null;
         }
       }
@@ -444,13 +450,13 @@ module.exports = Symbol;
       let validDrop = true;
 
       if (this.draggedNode && vm.validDrop) {
-        validDrop = vm.validDrop(this.draggedNode, $target.parents('.folder'), event);
+        validDrop = vm.validDrop(this.draggedNode, $target.parents(".folder"), event);
       }
 
       if (this.draggedNode) {
-        if (validDrop && this.draggedNode.parentNode && $target.parents('.folder').attr('id') != this.draggedNode.parentNode.id && $target.parents('.folder').attr('id') != this.draggedNode.id) {
+        if (validDrop && this.draggedNode.parentNode && $target.parents(".folder").attr("id") != this.draggedNode.parentNode.id && $target.parents(".folder").attr("id") != this.draggedNode.id) {
           event.preventDefault();
-        } else if (validDrop && $target.parents('.folder').attr('id') != this.draggedNode.id) {
+        } else if (validDrop && $target.parents(".folder").attr("id") != this.draggedNode.id) {
           event.preventDefault();
         }
       }
@@ -470,18 +476,18 @@ module.exports = Symbol;
       let validDrop = true;
 
       if (this.draggedNode, vm.validDrop) {
-        validDrop = vm.validDrop(this.draggedNode, $target.parents('.leaf'), event);
+        validDrop = vm.validDrop(this.draggedNode, $target.parents(".leaf"), event);
       }
 
       this.clearActive();
 
-      this.overFolder = $target.parents('.leaf')[0];
+      this.overFolder = $target.parents(".leaf")[0];
 
       if (this.draggedNode) {
-        if (validDrop && this.draggedNode.parentNode && $target.parents('.leaf').attr('id') != this.draggedNode.parentNode.id && $target.parents('.leaf').attr('id') != this.draggedNode.id) {
-          $target.parents('.leaf').addClass('active');
-        } else if (validDrop && $target.parents('.leaf').attr('id') != this.draggedNode.id) {
-          $target.parents('.leaf').addClass('active');
+        if (validDrop && this.draggedNode.parentNode && $target.parents(".leaf").attr("id") != this.draggedNode.parentNode.id && $target.parents(".leaf").attr("id") != this.draggedNode.id) {
+          $target.parents(".leaf").addClass("active");
+        } else if (validDrop && $target.parents(".leaf").attr("id") != this.draggedNode.id) {
+          $target.parents(".leaf").addClass("active");
         }
       }
     },
@@ -495,7 +501,7 @@ module.exports = Symbol;
 
       if (this.overFolder) {
         if (!$.contains(this.overFolder, $target[0])) {
-          $(this.overFolder).removeClass('active');
+          $(this.overFolder).removeClass("active");
           this.overFolder = null;
         }
       }
@@ -511,15 +517,15 @@ module.exports = Symbol;
       let validDrop = true;
 
       if (this.draggedNode, vm.validDrop) {
-        validDrop = vm.validDrop(this.draggedNode, $target.parents('.leaf'), event);
+        validDrop = vm.validDrop(this.draggedNode, $target.parents(".leaf"), event);
       }
 
       if (this.draggedNode) {
         if (this.draggedNode.parentNode) {
-          if (validDrop && $target.parents('.leaf').attr('id') != this.draggedNode.parentNode.id && $target.parents('.leaf').attr('id') != this.draggedNode.id) {
+          if (validDrop && $target.parents(".leaf").attr("id") != this.draggedNode.parentNode.id && $target.parents(".leaf").attr("id") != this.draggedNode.id) {
             event.preventDefault();
           }
-        } else if (validDrop && $target.parents('.leaf').attr('id') != this.draggedNode.id) {
+        } else if (validDrop && $target.parents(".leaf").attr("id") != this.draggedNode.id) {
           event.preventDefault();
         }
       }
@@ -533,25 +539,27 @@ module.exports = Symbol;
       const vm = this;
       const $target = $(event.target);
 
-      if ($target.parents('.folder').length > 0) {
-        const parentNodeId = $(event.target).parents('.folder').attr('id');
+      if ($target.parents(".folder").length > 0) {
+        const parentNodeId = $(event.target).parents(".folder").attr("id");
 
         this.newParentNode = this.flattenedNodes.filter(_node => {
           return _node.id == parentNodeId;
         })[0];
 
-        $(this.overFolder).removeClass('active');
-      } else if ($target.parents('.leaf').length > 0) {
-        const parentNodeId = $(event.target).parents('.leaf').attr('id');
+        $(this.overFolder).removeClass("active");
+      } else if ($target.parents(".leaf").length > 0) {
+        const parentNodeId = $(event.target).parents(".leaf").attr("id");
 
         this.newParentNode = this.flattenedNodes.filter(_node => {
           return _node.id == parentNodeId;
         })[0];
 
-        $(this.overFolder).removeClass('active');
+        $(this.overFolder).removeClass("active");
+
+        this.collapseChildren(this.draggedNode);
       } else {
-        const previousSiblingId = $(event.target).parents('.drop-row').prev().attr('id');
-        const nextSiblingId = $(event.target).parents('.drop-row').next().attr('id');
+        const previousSiblingId = $(event.target).parents(".drop-row").prev().attr("id");
+        const nextSiblingId = $(event.target).parents(".drop-row").next().attr("id");
 
         this.previousSibling = this.flattenedNodes.filter(_node => {
           return _node.id == previousSiblingId;
@@ -561,8 +569,8 @@ module.exports = Symbol;
         })[0];
 
         // remove drag classes
-        $(event.target).parents('.drop-row').removeClass('active');
-        $(event.target).parents('.drop-row').addClass('inactive');
+        $(event.target).parents(".drop-row").removeClass("active");
+        $(event.target).parents(".drop-row").addClass("inactive");
       }
 
       this.processDrop();
@@ -619,7 +627,7 @@ module.exports = Symbol;
 
         this.flattenNodes(this.unFlattenNodes());
 
-        this.$emit('drop', this.draggedNode, oldParent, this.draggedNode.parentNode, this.previousSibling, this.nextSibling, this.unFlattenNodes(), () => {
+        this.$emit("drop", this.draggedNode, oldParent, this.draggedNode.parentNode, this.previousSibling, this.nextSibling, this.unFlattenNodes(), () => {
           this.flattenNodes(currentNodes);
         });
 
@@ -642,9 +650,9 @@ module.exports = Symbol;
      */
     expandableIcon(node) {
       if (node.expanded) {
-        return 'folder_open';
+        return "folder_open";
       } else {
-        return 'folder';
+        return "folder";
       }
     },
 
@@ -654,7 +662,7 @@ module.exports = Symbol;
      */
     nodeStyle(node) {
       return {
-        paddingLeft: 8 + 12 * node.depth + 'px'
+        paddingLeft: 8 + 12 * node.depth + "px"
       };
     },
 
@@ -684,7 +692,7 @@ module.exports = Symbol;
       } else if (node.parentNode.expanded) {
         return null;
       } else {
-        return 'display:none;';
+        return "display:none;";
       }
     },
 
@@ -693,11 +701,11 @@ module.exports = Symbol;
      * @param {Object} node The Node
      */
     toggleNode(node) {
-      node.expanded = !node.expanded;
+      this.$set(node, "expanded", !node.expanded);
 
       if (!node.expanded) this.collapseChildren(node);
 
-      this.$emit('node-toggle', node);
+      this.$emit("node-toggle", node);
     },
 
     /**
@@ -707,11 +715,13 @@ module.exports = Symbol;
     collapseChildren(node) {
       let vm = this;
 
-      node.expanded = false;
+      this.$set(node, "expanded", false);
 
-      node.children.forEach(child => {
-        vm.collapseChildren(child);
-      });
+      if (node.children) {
+        node.children.forEach(child => {
+          vm.collapseChildren(child);
+        });
+      }
     },
 
     /*
@@ -722,7 +732,7 @@ module.exports = Symbol;
      * Clear any active classes
      */
     clearActive() {
-      $(this.$el).find('.active').removeClass('active');
+      $(this.$el).find(".active").removeClass("active");
     }
   }
 });
@@ -1236,11 +1246,21 @@ const unFlattenNode = (node, flattenedNodes) => {
     }
   });
 
-  node.children = children;
+  if (children.length == 0) {
+    Object.assign(node, {
+      leaf: true,
+      children: []
+    });
+  } else {
+    Object.assign(node, {
+      children: children,
+      leaf: false
+    });
 
-  node.children.forEach(child => {
-    unFlattenNode(child, flattenedNodes);
-  });
+    node.children.forEach(child => {
+      unFlattenNode(child, flattenedNodes);
+    });
+  }
 
   return node;
 };
@@ -1255,12 +1275,13 @@ const unFlattenNode = (node, flattenedNodes) => {
 const flattenNode = (node, children) => {
   children = children || [];
 
-  children = children.concat(node.children);
-
-  node.children.forEach(child => {
-    child.parentNode = node;
-    children.splice(children.indexOf(child) + 1, 0, flattenNode(child));
-  });
+  if (node.children) {
+    children = children.concat(node.children);
+    node.children.forEach(child => {
+      child.parentNode = node;
+      children.splice(children.indexOf(child) + 1, 0, flattenNode(child));
+    });
+  }
 
   return __WEBPACK_IMPORTED_MODULE_0_lodash_flattenDeep___default()(children);
 };
@@ -2003,6 +2024,7 @@ var render = function() {
                                 "td",
                                 {
                                   staticClass: "expandable-node",
+                                  staticStyle: { width: "0.1%" },
                                   style: _vm.nodeStyle(props.item)
                                 },
                                 [
@@ -2014,6 +2036,7 @@ var render = function() {
                                 "td",
                                 {
                                   staticClass: "expandable-node",
+                                  staticStyle: { width: "0.1%" },
                                   style: _vm.nodeStyle(props.item),
                                   on: {
                                     click: function($event) {
@@ -2135,6 +2158,7 @@ var render = function() {
                                 "td",
                                 {
                                   staticClass: "expandable-node",
+                                  staticStyle: { width: "0.1%" },
                                   style: _vm.nodeStyle(props.item)
                                 },
                                 [
@@ -2146,6 +2170,7 @@ var render = function() {
                                 "td",
                                 {
                                   staticClass: "expandable-node",
+                                  staticStyle: { width: "0.1%" },
                                   style: _vm.nodeStyle(props.item),
                                   on: {
                                     click: function($event) {

@@ -1,4 +1,4 @@
-import flattenDeep from 'lodash/flattenDeep';
+import flattenDeep from "lodash/flattenDeep";
 
 /**
  * @private
@@ -16,11 +16,21 @@ const unFlattenNode = (node, flattenedNodes) => {
     }
   });
 
-  node.children = children;
+  if (children.length == 0) {
+    Object.assign(node, {
+      leaf: true,
+      children: []
+    });
+  } else {
+    Object.assign(node, {
+      children: children,
+      leaf: false
+    });
 
-  node.children.forEach(child => {
-    unFlattenNode(child, flattenedNodes);
-  });
+    node.children.forEach(child => {
+      unFlattenNode(child, flattenedNodes);
+    });
+  }
 
   return node;
 };
@@ -35,12 +45,13 @@ const unFlattenNode = (node, flattenedNodes) => {
 const flattenNode = (node, children) => {
   children = children || [];
 
-  children = children.concat(node.children);
-
-  node.children.forEach(child => {
-    child.parentNode = node;
-    children.splice(children.indexOf(child) + 1, 0, flattenNode(child));
-  });
+  if (node.children) {
+    children = children.concat(node.children);
+    node.children.forEach(child => {
+      child.parentNode = node;
+      children.splice(children.indexOf(child) + 1, 0, flattenNode(child));
+    });
+  }
 
   return flattenDeep(children);
 };
@@ -117,5 +128,5 @@ export default {
   moveNode,
   flattenNodes,
   unFlattenNodes,
-  findNode,
+  findNode
 };

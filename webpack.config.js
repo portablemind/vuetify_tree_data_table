@@ -20,24 +20,18 @@ var commonConfig = {
       },
       {
         test: /\.css$/,
-        loader: "style!less!css"
+        loader: "style-loader!css-loader"
       }
     ]
+  },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+    }
   }
 };
 
 module.exports = [
-  // Config 1: For browser environment
-  merge(commonConfig, {
-    entry: path.resolve(__dirname + "/src/plugin.js"),
-    output: {
-      filename: "v-tree-data-table.min.js",
-      libraryTarget: "window",
-      library: "VueClock"
-    }
-  }),
-
-  // Config 2: For Node-based development environments
   merge(commonConfig, {
     entry: path.resolve(__dirname + "/src/v-tree-data-table.vue"),
     output: {
@@ -47,6 +41,13 @@ module.exports = [
       // These options are useful if the user wants to load the module with AMD
       library: "v-tree-data-table",
       umdNamedDefine: true
+    }
+  }),
+  merge(commonConfig, {
+    entry: path.resolve(__dirname + "/example/main.js"),
+    output: {
+      filename: "example.js",
+      libraryTarget: "umd",
     }
   })
 ];

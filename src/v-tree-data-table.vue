@@ -48,10 +48,10 @@
               <v-icon>drag_handle</v-icon>
             </v-btn>
           </td>
-          <td v-if="props.item.leaf" class="expandable-node" :style="nodeStyle(props.item)">
+          <td v-if="props.item.leaf" class="expandable-node" style="width: 0.1%" :style="nodeStyle(props.item)">
             <v-icon>keyboard_arrow_right</v-icon>
           </td>
-          <td v-else class="expandable-node" @click="toggleNode(props.item)" :style="nodeStyle(props.item)">
+          <td v-else class="expandable-node" @click="toggleNode(props.item)" style="width: 0.1%" :style="nodeStyle(props.item)">
             <v-icon>{{expandableIcon(props.item)}}</v-icon>
           </td>
           <slot name="row" v-bind="props"></slot>
@@ -66,10 +66,10 @@
               <v-icon>drag_handle</v-icon>
             </v-btn>
           </td>
-          <td v-if="props.item.leaf" class="expandable-node" :style="nodeStyle(props.item)">
+          <td v-if="props.item.leaf" class="expandable-node" style="width: 0.1%" :style="nodeStyle(props.item)">
             <v-icon>keyboard_arrow_right</v-icon>
           </td>
-          <td v-else class="expandable-node" @click="toggleNode(props.item)" :style="nodeStyle(props.item)">
+          <td v-else class="expandable-node" @click="toggleNode(props.item)" style="width: 0.1%" :style="nodeStyle(props.item)">
             <v-icon>{{expandableIcon(props.item)}}</v-icon>
           </td>
           <slot name="row" v-bind="props"></slot>
@@ -84,31 +84,31 @@
 </template>
 
 <script>
-import nodeHelper from './nodeHelper.js';
+import nodeHelper from "./nodeHelper.js";
 
 export default {
   props: {
     headers: {
       type: Array,
       default: [],
-      required: true,
+      required: true
     },
     items: {
       type: Array,
       default: [],
-      required: true,
+      required: true
     },
     pagination: {
       type: Object,
-      required: true,
+      required: true
     },
     totalItems: {
       type: Number,
-      required: true,
+      required: true
     },
     loading: {
       type: Boolean,
-      required: true,
+      required: true
     },
     rowsPerPageItems: {
       type: Array,
@@ -117,26 +117,26 @@ export default {
           5,
           10,
           25,
-          { text: '$vuetify.dataIterator.rowsPerPageAll', value: -1 },
+          { text: "$vuetify.dataIterator.rowsPerPageAll", value: -1 }
         ];
-      },
+      }
     },
     rowsPerPageText: {
       type: String,
-      default: `$vuetify.dataTable.rowsPerPageText`,
+      default: `$vuetify.dataTable.rowsPerPageText`
     },
     selectAll: {
       type: [Boolean, String],
-      default: undefined,
+      default: undefined
     },
     value: {
       type: Array,
-      default: undefined,
+      default: undefined
     },
     validDrop: {
       type: Function,
-      default: undefined,
-    },
+      default: undefined
+    }
   },
 
   mounted: function() {
@@ -151,14 +151,14 @@ export default {
       overFolder: null,
       draggedNode: null,
       newParentNode: null,
-      selected: [],
+      selected: []
     };
   },
 
   watch: {
     internalPagination() {
       // when pagination is changed emit a load
-      this.$emit('load', this.internalPagination);
+      this.$emit("load", this.internalPagination);
     },
     items() {
       this.flattenNodes();
@@ -167,8 +167,8 @@ export default {
       this.selected = this.value;
     },
     selected() {
-      this.$emit('input', this.selected);
-    },
+      this.$emit("input", this.selected);
+    }
   },
 
   computed: {
@@ -176,13 +176,19 @@ export default {
       let headers = this.headers;
 
       headers.unshift({
-        text: ' ',
-        value: 'sortable',
-        sortable: false,
+        text: "",
+        value: "expanded",
+        sortable: false
+      });
+
+      headers.unshift({
+        text: " ",
+        value: "sortable",
+        sortable: false
       });
 
       return headers;
-    },
+    }
   },
 
   methods: {
@@ -202,21 +208,21 @@ export default {
     setupDragGhosts: function() {
       this.folderClosedDragGhost = new Image();
       this.folderClosedDragGhost.src =
-        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBCADWj9yyAAAAu0lEQVQ4y+2SoQ6CUBSGv3txXDdnkKQ0M0W5L+BD2Ay+h02fwDcw2Y0m5wsAyWKy0WgGYICFWZQBwY3g/7d//3d2znagcxJzRlxwLWG+syKPgrQK6AWAXrPBpiizTOzZuvhfAQO04sQUE1W6LxYT6V8/y5oQAXrInXHd7sVTLL0zyMbHDjhoswUAgGoL8Ad+B+Si+W+DBBmTNapnxGBAmNkRDoqYpNIpD3aeB2KGwxFtYdbMT7xoxY0O6gWXGzUrgZScUAAAAABJRU5ErkJggg==';
-      this.folderClosedDragGhost.height = '24';
-      this.folderClosedDragGhost.width = '24';
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBCADWj9yyAAAAu0lEQVQ4y+2SoQ6CUBSGv3txXDdnkKQ0M0W5L+BD2Ay+h02fwDcw2Y0m5wsAyWKy0WgGYICFWZQBwY3g/7d//3d2znagcxJzRlxwLWG+syKPgrQK6AWAXrPBpiizTOzZuvhfAQO04sQUE1W6LxYT6V8/y5oQAXrInXHd7sVTLL0zyMbHDjhoswUAgGoL8Ad+B+Si+W+DBBmTNapnxGBAmNkRDoqYpNIpD3aeB2KGwxFtYdbMT7xoxY0O6gWXGzUrgZScUAAAAABJRU5ErkJggg==";
+      this.folderClosedDragGhost.height = "24";
+      this.folderClosedDragGhost.width = "24";
 
       this.folderOpenDragGhost = new Image();
       this.folderOpenDragGhost.src =
-        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBDiyyDRfXAAAAe0lEQVQ4y2NgGPqAkYGBgcHYm2ElAzdC8H/DuUZcGpgZGBgYpC4gK2dgYHSQZHx+AJ8N/4lwy1eGiLNbGBiYYK4gqIGLYQ0DAwMDC8yms4z41Rv/Z2BnYEDYQDQY1TA4NEBi+gcDO8H09J/hJ8KGUIZvBI3+xhDKMEwAADaQFZcd2zJpAAAAAElFTkSuQmCC';
-      this.folderOpenDragGhost.height = '24';
-      this.folderOpenDragGhost.width = '24';
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBDiyyDRfXAAAAe0lEQVQ4y2NgGPqAkYGBgcHYm2ElAzdC8H/DuUZcGpgZGBgYpC4gK2dgYHSQZHx+AJ8N/4lwy1eGiLNbGBiYYK4gqIGLYQ0DAwMDC8yms4z41Rv/Z2BnYEDYQDQY1TA4NEBi+gcDO8H09J/hJ8KGUIZvBI3+xhDKMEwAADaQFZcd2zJpAAAAAElFTkSuQmCC";
+      this.folderOpenDragGhost.height = "24";
+      this.folderOpenDragGhost.width = "24";
 
       this.leafDragGhost = new Image();
       this.leafDragGhost.src =
-        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBCCN06K3AAAAAZElEQVQ4y+3TsQmAUAxF0avD/EYEzRvBLSzEHdSRFK0dMPaC8INgZcpwTxMI/AMVAE2E2Gp7gFiSy20LkFZxYl8Q1XK5Hfd9+Sg6gOLMvdUkl1ufm8+xfAnlSqEcwAaN/0+9mwuzISU1axeSPQAAAABJRU5ErkJggg==';
-      this.leafDragGhost.height = '24';
-      this.leafDragGhost.width = '24';
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBCCN06K3AAAAAZElEQVQ4y+3TsQmAUAxF0avD/EYEzRvBLSzEHdSRFK0dMPaC8INgZcpwTxMI/AMVAE2E2Gp7gFiSy20LkFZxYl8Q1XK5Hfd9+Sg6gOLMvdUkl1ufm8+xfAnlSqEcwAaN/0+9mwuzISU1axeSPQAAAABJRU5ErkJggg==";
+      this.leafDragGhost.height = "24";
+      this.leafDragGhost.width = "24";
     },
 
     /**
@@ -225,8 +231,8 @@ export default {
      */
     dragStart(event) {
       const draggedNodeId = $(event.target)
-        .closest('tr')
-        .attr('id');
+        .closest("tr")
+        .attr("id");
 
       this.draggedNode = this.flattenedNodes.filter(_node => {
         return _node.id == draggedNodeId;
@@ -263,8 +269,8 @@ export default {
       this.clearActive();
 
       if (
-        ($target.parents('.drop-row').length > 0 ||
-          $target.hasClass('.drop-row')) &&
+        ($target.parents(".drop-row").length > 0 ||
+          $target.hasClass(".drop-row")) &&
         this.draggedNode
       ) {
         let validDrop = true;
@@ -272,7 +278,7 @@ export default {
         if (this.draggedNode && vm.validDrop) {
           validDrop = vm.validDrop(
             this.draggedNode,
-            $target.parents('.drop-row'),
+            $target.parents(".drop-row"),
             event
           );
         }
@@ -281,19 +287,19 @@ export default {
           validDrop &&
           parseInt(
             $target
-              .parents('.drop-row')
+              .parents(".drop-row")
               .prev()
-              .attr('id')
+              .attr("id")
           ) != this.draggedNode.id &&
           parseInt(
             $target
-              .parents('.drop-row')
+              .parents(".drop-row")
               .next()
-              .attr('id')
+              .attr("id")
           ) != this.draggedNode.id
         ) {
-          $target.parents('.drop-row').removeClass('inactive');
-          $target.parents('.drop-row').addClass('active');
+          $target.parents(".drop-row").removeClass("inactive");
+          $target.parents(".drop-row").addClass("active");
         }
       }
     },
@@ -304,11 +310,11 @@ export default {
      */
     dragLeaveSlot(event) {
       $(event.target)
-        .parents('.drop-row')
-        .removeClass('active');
+        .parents(".drop-row")
+        .removeClass("active");
       $(event.target)
-        .parents('.drop-row')
-        .addClass('inactive');
+        .parents(".drop-row")
+        .addClass("inactive");
     },
 
     /**
@@ -323,7 +329,7 @@ export default {
       if (this.draggedNode && vm.validDrop) {
         validDrop = vm.validDrop(
           this.draggedNode,
-          $target.parents('.drop-row'),
+          $target.parents(".drop-row"),
           event
         );
       }
@@ -333,15 +339,15 @@ export default {
         this.draggedNode &&
         parseInt(
           $target
-            .parents('.drop-row')
+            .parents(".drop-row")
             .prev()
-            .attr('id')
+            .attr("id")
         ) != this.draggedNode.id &&
         parseInt(
           $target
-            .parents('.drop-row')
+            .parents(".drop-row")
             .next()
-            .attr('id')
+            .attr("id")
         ) != this.draggedNode.id
       ) {
         event.preventDefault();
@@ -362,14 +368,14 @@ export default {
 
       this.clearActive();
 
-      this.overFolder = $target.parents('.folder')[0];
+      this.overFolder = $target.parents(".folder")[0];
 
       let validDrop = true;
 
       if (this.draggedNode && vm.validDrop) {
         validDrop = vm.validDrop(
           this.draggedNode,
-          $target.parents('.folder'),
+          $target.parents(".folder"),
           event
         );
       }
@@ -378,17 +384,17 @@ export default {
         if (this.draggedNode && this.draggedNode.parentNode) {
           if (
             validDrop &&
-            $target.parents('.folder').attr('id') !=
+            $target.parents(".folder").attr("id") !=
               this.draggedNode.parentNode.id &&
-            $target.parents('.folder').attr('id') != this.draggedNode.id
+            $target.parents(".folder").attr("id") != this.draggedNode.id
           ) {
-            $target.parents('.folder').addClass('active');
+            $target.parents(".folder").addClass("active");
           }
         } else if (
           validDrop &&
-          $target.parents('.folder').attr('id') != this.draggedNode.id
+          $target.parents(".folder").attr("id") != this.draggedNode.id
         ) {
-          $target.parents('.folder').addClass('active');
+          $target.parents(".folder").addClass("active");
         }
       }
     },
@@ -402,7 +408,7 @@ export default {
 
       if (this.overFolder) {
         if (!$.contains(this.overFolder, $target[0])) {
-          $(this.overFolder).removeClass('active');
+          $(this.overFolder).removeClass("active");
           this.overFolder = null;
         }
       }
@@ -420,7 +426,7 @@ export default {
       if (this.draggedNode && vm.validDrop) {
         validDrop = vm.validDrop(
           this.draggedNode,
-          $target.parents('.folder'),
+          $target.parents(".folder"),
           event
         );
       }
@@ -429,14 +435,14 @@ export default {
         if (
           validDrop &&
           this.draggedNode.parentNode &&
-          $target.parents('.folder').attr('id') !=
+          $target.parents(".folder").attr("id") !=
             this.draggedNode.parentNode.id &&
-          $target.parents('.folder').attr('id') != this.draggedNode.id
+          $target.parents(".folder").attr("id") != this.draggedNode.id
         ) {
           event.preventDefault();
         } else if (
           validDrop &&
-          $target.parents('.folder').attr('id') != this.draggedNode.id
+          $target.parents(".folder").attr("id") != this.draggedNode.id
         ) {
           event.preventDefault();
         }
@@ -459,29 +465,29 @@ export default {
       if ((this.draggedNode, vm.validDrop)) {
         validDrop = vm.validDrop(
           this.draggedNode,
-          $target.parents('.leaf'),
+          $target.parents(".leaf"),
           event
         );
       }
 
       this.clearActive();
 
-      this.overFolder = $target.parents('.leaf')[0];
+      this.overFolder = $target.parents(".leaf")[0];
 
       if (this.draggedNode) {
         if (
           validDrop &&
           this.draggedNode.parentNode &&
-          $target.parents('.leaf').attr('id') !=
+          $target.parents(".leaf").attr("id") !=
             this.draggedNode.parentNode.id &&
-          $target.parents('.leaf').attr('id') != this.draggedNode.id
+          $target.parents(".leaf").attr("id") != this.draggedNode.id
         ) {
-          $target.parents('.leaf').addClass('active');
+          $target.parents(".leaf").addClass("active");
         } else if (
           validDrop &&
-          $target.parents('.leaf').attr('id') != this.draggedNode.id
+          $target.parents(".leaf").attr("id") != this.draggedNode.id
         ) {
-          $target.parents('.leaf').addClass('active');
+          $target.parents(".leaf").addClass("active");
         }
       }
     },
@@ -495,7 +501,7 @@ export default {
 
       if (this.overFolder) {
         if (!$.contains(this.overFolder, $target[0])) {
-          $(this.overFolder).removeClass('active');
+          $(this.overFolder).removeClass("active");
           this.overFolder = null;
         }
       }
@@ -513,7 +519,7 @@ export default {
       if ((this.draggedNode, vm.validDrop)) {
         validDrop = vm.validDrop(
           this.draggedNode,
-          $target.parents('.leaf'),
+          $target.parents(".leaf"),
           event
         );
       }
@@ -522,15 +528,15 @@ export default {
         if (this.draggedNode.parentNode) {
           if (
             validDrop &&
-            $target.parents('.leaf').attr('id') !=
+            $target.parents(".leaf").attr("id") !=
               this.draggedNode.parentNode.id &&
-            $target.parents('.leaf').attr('id') != this.draggedNode.id
+            $target.parents(".leaf").attr("id") != this.draggedNode.id
           ) {
             event.preventDefault();
           }
         } else if (
           validDrop &&
-          $target.parents('.leaf').attr('id') != this.draggedNode.id
+          $target.parents(".leaf").attr("id") != this.draggedNode.id
         ) {
           event.preventDefault();
         }
@@ -545,35 +551,38 @@ export default {
       const vm = this;
       const $target = $(event.target);
 
-      if ($target.parents('.folder').length > 0) {
+      if ($target.parents(".folder").length > 0) {
         const parentNodeId = $(event.target)
-          .parents('.folder')
-          .attr('id');
+          .parents(".folder")
+          .attr("id");
 
         this.newParentNode = this.flattenedNodes.filter(_node => {
           return _node.id == parentNodeId;
         })[0];
 
-        $(this.overFolder).removeClass('active');
-      } else if ($target.parents('.leaf').length > 0) {
+        $(this.overFolder).removeClass("active");
+      } else if ($target.parents(".leaf").length > 0) {
         const parentNodeId = $(event.target)
-          .parents('.leaf')
-          .attr('id');
+          .parents(".leaf")
+          .attr("id");
 
         this.newParentNode = this.flattenedNodes.filter(_node => {
           return _node.id == parentNodeId;
         })[0];
 
-        $(this.overFolder).removeClass('active');
+        $(this.overFolder).removeClass("active");
+
+        this.collapseChildren(this.draggedNode);
+
       } else {
         const previousSiblingId = $(event.target)
-          .parents('.drop-row')
+          .parents(".drop-row")
           .prev()
-          .attr('id');
+          .attr("id");
         const nextSiblingId = $(event.target)
-          .parents('.drop-row')
+          .parents(".drop-row")
           .next()
-          .attr('id');
+          .attr("id");
 
         this.previousSibling = this.flattenedNodes.filter(_node => {
           return _node.id == previousSiblingId;
@@ -584,11 +593,11 @@ export default {
 
         // remove drag classes
         $(event.target)
-          .parents('.drop-row')
-          .removeClass('active');
+          .parents(".drop-row")
+          .removeClass("active");
         $(event.target)
-          .parents('.drop-row')
-          .addClass('inactive');
+          .parents(".drop-row")
+          .addClass("inactive");
       }
 
       this.processDrop();
@@ -661,7 +670,7 @@ export default {
         this.flattenNodes(this.unFlattenNodes());
 
         this.$emit(
-          'drop',
+          "drop",
           this.draggedNode,
           oldParent,
           this.draggedNode.parentNode,
@@ -692,9 +701,9 @@ export default {
      */
     expandableIcon(node) {
       if (node.expanded) {
-        return 'folder_open';
+        return "folder_open";
       } else {
-        return 'folder';
+        return "folder";
       }
     },
 
@@ -704,7 +713,7 @@ export default {
      */
     nodeStyle(node) {
       return {
-        paddingLeft: 8 + 12 * node.depth + 'px',
+        paddingLeft: 8 + 12 * node.depth + "px"
       };
     },
 
@@ -734,7 +743,7 @@ export default {
       } else if (node.parentNode.expanded) {
         return null;
       } else {
-        return 'display:none;';
+        return "display:none;";
       }
     },
 
@@ -743,11 +752,11 @@ export default {
      * @param {Object} node The Node
      */
     toggleNode(node) {
-      node.expanded = !node.expanded;
+      this.$set(node, "expanded", !node.expanded);
 
       if (!node.expanded) this.collapseChildren(node);
 
-      this.$emit('node-toggle', node);
+      this.$emit("node-toggle", node);
     },
 
     /**
@@ -757,11 +766,13 @@ export default {
     collapseChildren(node) {
       let vm = this;
 
-      node.expanded = false;
+      this.$set(node, "expanded", false);
 
-      node.children.forEach(child => {
-        vm.collapseChildren(child);
-      });
+      if (node.children) {
+        node.children.forEach(child => {
+          vm.collapseChildren(child);
+        });
+      }
     },
 
     /*
@@ -773,10 +784,10 @@ export default {
      */
     clearActive() {
       $(this.$el)
-        .find('.active')
-        .removeClass('active');
-    },
-  },
+        .find(".active")
+        .removeClass("active");
+    }
+  }
 };
 </script>
 
