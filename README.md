@@ -47,7 +47,7 @@ When a row is double clicked
 
 #### Arguments
 
-event - Browser event
+event - Browser event<br/>
 node - Node that was clicked
 
 ### contextmenu
@@ -56,7 +56,7 @@ Mouse right click
 
 ### Arguments
 
-event - Browser event
+event - Browser event<br/>
 node - Node that was clicked
 
 ### load
@@ -69,11 +69,11 @@ pagination - Pagination data from v-data-table
 
 ### input
 
+When a row is selected
+
 #### Arguments
 
 selected - Selected Node
-
-When a row is selected
 
 ### drop
 
@@ -81,13 +81,13 @@ When a node is dropped
 
 #### Arguments
 
-node - Node that was dropped
-oldParent - The previous parent of the node
-parentNode - The new parent of the node
-previousSibling - The previous sibling of the node
-nextSibling - The next sibling of the node
-nodes - All nodes
-revert - Function to revert drop
+node - Node that was dropped<br/>
+oldParent - The previous parent of the node<br/>
+parentNode - The new parent of the node<br/>
+previousSibling - The previous sibling of the node<br/>
+nextSibling - The next sibling of the node<br/>
+nodes - All nodes<br/>
+revert - Function to revert drop<br/>
 
 ### node-toggle
 
