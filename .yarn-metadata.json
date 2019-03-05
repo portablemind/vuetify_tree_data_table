@@ -32,7 +32,12 @@
     "bugs": {
       "url": "https://github.com/portablemind/vuetify_tree_data_table/issues"
     },
-    "keywords": ["vuetify", "tree", "data", "table"],
+    "keywords": [
+      "vuetify",
+      "tree",
+      "data",
+      "table"
+    ],
     "devDependencies": {
       "uglifyjs-webpack-plugin": "^1.2.7"
     },
@@ -45,9 +50,9 @@
   "remote": {
     "type": "copy",
     "registry": "npm",
-    "hash": "e0420efd-fed9-408e-80c8-a113a2467f13-1538053123587",
+    "hash": "d34c6fae-1736-42b4-9d8d-8967dd332235-1545264187646",
     "reference": "/Users/russellholmes/Desktop/saas_instances/vuejs/lib/vuetify_tree_data_table"
   },
   "registry": "npm",
-  "hash": "e0420efd-fed9-408e-80c8-a113a2467f13-1538053123587"
+  "hash": "d34c6fae-1736-42b4-9d8d-8967dd332235-1545264187646"
 }

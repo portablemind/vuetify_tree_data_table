@@ -177,8 +177,6 @@ module.exports = Symbol;
 //
 //
 
-
-
 /* harmony default export */ __webpack_exports__["a"] = ({
   props: {
     headers: {
@@ -205,13 +203,16 @@ module.exports = Symbol;
     },
     rowsPerPageItems: {
       type: Array,
-      default: () => {
-        return [5, 10, 25, { text: "$vuetify.dataIterator.rowsPerPageAll", value: -1 }];
+      default: function _default() {
+        return [5, 10, 25, {
+          text: "$vuetify.dataIterator.rowsPerPageAll",
+          value: -1
+        }];
       }
     },
     rowsPerPageText: {
       type: String,
-      default: `$vuetify.dataTable.rowsPerPageText`
+      default: "$vuetify.dataTable.rowsPerPageText"
     },
     selectAll: {
       type: [Boolean, String],
@@ -226,84 +227,74 @@ module.exports = Symbol;
       default: undefined
     }
   },
-
-  mounted: function () {
+  mounted: function mounted() {
     this.setupDragGhosts();
   },
-
-  data: function () {
+  data: function data() {
     return {
       internalPagination: {},
       flattenedNodes: [],
-
       overFolder: null,
       draggedNode: null,
       newParentNode: null,
       selected: []
     };
   },
-
   watch: {
-    internalPagination() {
+    internalPagination: function internalPagination() {
       // when pagination is changed emit a load
       this.$emit("load", this.internalPagination);
     },
-    items() {
+    items: function items() {
       this.flattenNodes();
     },
-    value() {
+    value: function value() {
       this.selected = this.value;
     },
-    selected() {
+    selected: function selected() {
       this.$emit("input", this.selected);
     }
   },
-
   computed: {
-    computedHeaders() {
-      let headers = this.headers;
-
+    computedHeaders: function computedHeaders() {
+      var headers = this.headers;
       headers.unshift({
         text: "",
         value: "expanded",
         sortable: false
       });
-
       headers.unshift({
         text: " ",
         value: "sortable",
         sortable: false
       });
-
       return headers;
     }
   },
-
   methods: {
     /**
      * Fired when select all is toggled
      */
-    toggleSelectAll() {
+    toggleSelectAll: function toggleSelectAll() {
       if (this.selected.length > 0) {
         this.selected = [];
       } else {
         this.selected = this.items;
       }
     },
+
     /*
     Setup drag ghost images
     */
-    setupDragGhosts: function () {
+    setupDragGhosts: function setupDragGhosts() {
       this.folderClosedDragGhost = new Image();
       this.folderClosedDragGhost.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBCADWj9yyAAAAu0lEQVQ4y+2SoQ6CUBSGv3txXDdnkKQ0M0W5L+BD2Ay+h02fwDcw2Y0m5wsAyWKy0WgGYICFWZQBwY3g/7d//3d2znagcxJzRlxwLWG+syKPgrQK6AWAXrPBpiizTOzZuvhfAQO04sQUE1W6LxYT6V8/y5oQAXrInXHd7sVTLL0zyMbHDjhoswUAgGoL8Ad+B+Si+W+DBBmTNapnxGBAmNkRDoqYpNIpD3aeB2KGwxFtYdbMT7xoxY0O6gWXGzUrgZScUAAAAABJRU5ErkJggg==";
       this.folderClosedDragGhost.height = "24";
       this.folderClosedDragGhost.width = "24";
-
       this.folderOpenDragGhost = new Image();
       this.folderOpenDragGhost.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBDiyyDRfXAAAAe0lEQVQ4y2NgGPqAkYGBgcHYm2ElAzdC8H/DuUZcGpgZGBgYpC4gK2dgYHSQZHx+AJ8N/4lwy1eGiLNbGBiYYK4gqIGLYQ0DAwMDC8yms4z41Rv/Z2BnYEDYQDQY1TA4NEBi+gcDO8H09J/hJ8KGUIZvBI3+xhDKMEwAADaQFZcd2zJpAAAAAElFTkSuQmCC";
       this.folderOpenDragGhost.height = "24";
       this.folderOpenDragGhost.width = "24";
-
       this.leafDragGhost = new Image();
       this.leafDragGhost.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAAmJLR0QA/4ePzL8AAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfiCAEBCCN06K3AAAAAZElEQVQ4y+3TsQmAUAxF0avD/EYEzRvBLSzEHdSRFK0dMPaC8INgZcpwTxMI/AMVAE2E2Gp7gFiSy20LkFZxYl8Q1XK5Hfd9+Sg6gOLMvdUkl1ufm8+xfAnlSqEcwAaN/0+9mwuzISU1axeSPQAAAABJRU5ErkJggg==";
       this.leafDragGhost.height = "24";
@@ -314,10 +305,9 @@ module.exports = Symbol;
      * dragStart handler
      * @param {Event} event Browser Event
      */
-    dragStart(event) {
-      const draggedNodeId = $(event.target).closest("tr").attr("id");
-
-      this.draggedNode = this.flattenedNodes.filter(_node => {
+    dragStart: function dragStart(event) {
+      var draggedNodeId = $(event.target).closest("tr").attr("id");
+      this.draggedNode = this.flattenedNodes.filter(function (_node) {
         return _node.id == draggedNodeId;
       })[0];
 
@@ -333,7 +323,7 @@ module.exports = Symbol;
     /**
      * dragEnd handler, clears all active rows
      */
-    dragEnd() {
+    dragEnd: function dragEnd() {
       this.clearActive();
     },
 
@@ -345,14 +335,13 @@ module.exports = Symbol;
      * dragEnter handler for a slot
      * @param {Event} event Browser Event
      */
-    dragEnterSlot(event) {
-      const vm = this;
-      const $target = $(event.target);
-
+    dragEnterSlot: function dragEnterSlot(event) {
+      var vm = this;
+      var $target = $(event.target);
       this.clearActive();
 
       if (($target.parents(".drop-row").length > 0 || $target.hasClass(".drop-row")) && this.draggedNode) {
-        let validDrop = true;
+        var validDrop = true;
 
         if (this.draggedNode && vm.validDrop) {
           validDrop = vm.validDrop(this.draggedNode, $target.parents(".drop-row"), event);
@@ -369,7 +358,7 @@ module.exports = Symbol;
      * dragLeave event handler for a slot
      * @param {Event} event Browser Event
      */
-    dragLeaveSlot(event) {
+    dragLeaveSlot: function dragLeaveSlot(event) {
       $(event.target).parents(".drop-row").removeClass("active");
       $(event.target).parents(".drop-row").addClass("inactive");
     },
@@ -378,10 +367,10 @@ module.exports = Symbol;
      * dragOver event handler for a slot
      * @param {Event} event Browser Event
      */
-    dragOverSlot(event) {
-      const vm = this;
-      const $target = $(event.target);
-      let validDrop = true;
+    dragOverSlot: function dragOverSlot(event) {
+      var vm = this;
+      var $target = $(event.target);
+      var validDrop = true;
 
       if (this.draggedNode && vm.validDrop) {
         validDrop = vm.validDrop(this.draggedNode, $target.parents(".drop-row"), event);
@@ -400,15 +389,12 @@ module.exports = Symbol;
      * dragEnter event handler for a folder
      * @param {Event} event Browser Event
      */
-    dragEnterFolder(event) {
-      const vm = this;
-      const $target = $(event.target);
-
+    dragEnterFolder: function dragEnterFolder(event) {
+      var vm = this;
+      var $target = $(event.target);
       this.clearActive();
-
       this.overFolder = $target.parents(".folder")[0];
-
-      let validDrop = true;
+      var validDrop = true;
 
       if (this.draggedNode && vm.validDrop) {
         validDrop = vm.validDrop(this.draggedNode, $target.parents(".folder"), event);
@@ -429,8 +415,8 @@ module.exports = Symbol;
      * dragLeave event handler for a folder
      * @param {Event} event Browser Event
      */
-    dragLeaveFolder(event) {
-      const $target = $(event.relatedTarget);
+    dragLeaveFolder: function dragLeaveFolder(event) {
+      var $target = $(event.relatedTarget);
 
       if (this.overFolder) {
         if (!$.contains(this.overFolder, $target[0])) {
@@ -444,10 +430,10 @@ module.exports = Symbol;
      * dragOver event handler for a folder
      * @param {Event} event Browser Event
      */
-    dragOverFolder(event) {
-      const vm = this;
-      const $target = $(event.target);
-      let validDrop = true;
+    dragOverFolder: function dragOverFolder(event) {
+      var vm = this;
+      var $target = $(event.target);
+      var validDrop = true;
 
       if (this.draggedNode && vm.validDrop) {
         validDrop = vm.validDrop(this.draggedNode, $target.parents(".folder"), event);
@@ -470,17 +456,16 @@ module.exports = Symbol;
      * dragEnter event handler for a leaf
      * @param {Event} event Browser Event
      */
-    dragEnterLeaf(event) {
-      const vm = this;
-      const $target = $(event.target);
-      let validDrop = true;
+    dragEnterLeaf: function dragEnterLeaf(event) {
+      var vm = this;
+      var $target = $(event.target);
+      var validDrop = true;
 
       if (this.draggedNode, vm.validDrop) {
         validDrop = vm.validDrop(this.draggedNode, $target.parents(".leaf"), event);
       }
 
       this.clearActive();
-
       this.overFolder = $target.parents(".leaf")[0];
 
       if (this.draggedNode) {
@@ -496,8 +481,8 @@ module.exports = Symbol;
      * dragLeave event handler for a leaf
      * @param {Event} event Browser Event
      */
-    dragLeaveLeaf(event) {
-      const $target = $(event.relatedTarget);
+    dragLeaveLeaf: function dragLeaveLeaf(event) {
+      var $target = $(event.relatedTarget);
 
       if (this.overFolder) {
         if (!$.contains(this.overFolder, $target[0])) {
@@ -511,10 +496,10 @@ module.exports = Symbol;
      * dragOver event handler for a leaf
      * @param {Event} event Browser Event
      */
-    dragOverLeaf(event) {
-      const vm = this;
-      const $target = $(event.target);
-      let validDrop = true;
+    dragOverLeaf: function dragOverLeaf(event) {
+      var vm = this;
+      var $target = $(event.target);
+      var validDrop = true;
 
       if (this.draggedNode, vm.validDrop) {
         validDrop = vm.validDrop(this.draggedNode, $target.parents(".leaf"), event);
@@ -535,40 +520,34 @@ module.exports = Symbol;
      * drop event handler
      * @param {Event} event Browser Event
      */
-    dropRow(event) {
-      const vm = this;
-      const $target = $(event.target);
+    dropRow: function dropRow(event) {
+      var vm = this;
+      var $target = $(event.target);
 
       if ($target.parents(".folder").length > 0) {
-        const parentNodeId = $(event.target).parents(".folder").attr("id");
-
-        this.newParentNode = this.flattenedNodes.filter(_node => {
+        var parentNodeId = $(event.target).parents(".folder").attr("id");
+        this.newParentNode = this.flattenedNodes.filter(function (_node) {
           return _node.id == parentNodeId;
         })[0];
-
         $(this.overFolder).removeClass("active");
       } else if ($target.parents(".leaf").length > 0) {
-        const parentNodeId = $(event.target).parents(".leaf").attr("id");
+        var _parentNodeId = $(event.target).parents(".leaf").attr("id");
 
-        this.newParentNode = this.flattenedNodes.filter(_node => {
-          return _node.id == parentNodeId;
+        this.newParentNode = this.flattenedNodes.filter(function (_node) {
+          return _node.id == _parentNodeId;
         })[0];
-
         $(this.overFolder).removeClass("active");
-
         this.collapseChildren(this.draggedNode);
       } else {
-        const previousSiblingId = $(event.target).parents(".drop-row").prev().attr("id");
-        const nextSiblingId = $(event.target).parents(".drop-row").next().attr("id");
-
-        this.previousSibling = this.flattenedNodes.filter(_node => {
+        var previousSiblingId = $(event.target).parents(".drop-row").prev().attr("id");
+        var nextSiblingId = $(event.target).parents(".drop-row").next().attr("id");
+        this.previousSibling = this.flattenedNodes.filter(function (_node) {
           return _node.id == previousSiblingId;
         })[0];
-        this.nextSibling = this.flattenedNodes.filter(_node => {
+        this.nextSibling = this.flattenedNodes.filter(function (_node) {
           return _node.id == nextSiblingId;
-        })[0];
+        })[0]; // remove drag classes
 
-        // remove drag classes
         $(event.target).parents(".drop-row").removeClass("active");
         $(event.target).parents(".drop-row").addClass("inactive");
       }
@@ -579,26 +558,25 @@ module.exports = Symbol;
     /**
      * Process the drop event, move node if needed
      */
-    processDrop() {
+    processDrop: function processDrop() {
+      var _this = this;
+
       if (this.draggedNode) {
-        const oldParent = this.draggedNode.parentNode;
+        var oldParent = this.draggedNode.parentNode;
 
         if (this.newParentNode) {
           __WEBPACK_IMPORTED_MODULE_0__nodeHelper_js__["a" /* default */].moveNode(this.draggedNode, this.newParentNode);
-
           this.overFolder = null;
           this.newParentNode = null;
         } else {
-          let currentIndex = this.flattenedNodes.indexOf(this.draggedNode);
-          let newIndex = 0;
-
+          var currentIndex = this.flattenedNodes.indexOf(this.draggedNode);
+          var newIndex = 0;
           this.flattenedNodes.splice(currentIndex, 1);
 
           if (this.previousSibling) {
-            newIndex = this.flattenedNodes.indexOf(this.previousSibling) + 1;
-
-            // If the previous sibilings parent is not the same as the dragged nodes parent then
+            newIndex = this.flattenedNodes.indexOf(this.previousSibling) + 1; // If the previous sibilings parent is not the same as the dragged nodes parent then
             // we need to move the dragged node to the parent
+
             if (this.nextSibling && this.nextSibling.parentNode && this.draggedNode.parentNode && this.draggedNode.parentNode.id && this.nextSibling.parentNode.id != this.draggedNode.parentNode.id) {
               __WEBPACK_IMPORTED_MODULE_0__nodeHelper_js__["a" /* default */].moveNode(this.draggedNode, this.nextSibling.parentNode);
             }
@@ -623,14 +601,11 @@ module.exports = Symbol;
           this.flattenedNodes.splice(newIndex, 0, this.draggedNode);
         }
 
-        const currentNodes = this.unFlattenNodes();
-
+        var currentNodes = this.unFlattenNodes();
         this.flattenNodes(this.unFlattenNodes());
-
-        this.$emit("drop", this.draggedNode, oldParent, this.draggedNode.parentNode, this.previousSibling, this.nextSibling, this.unFlattenNodes(), () => {
-          this.flattenNodes(currentNodes);
+        this.$emit("drop", this.draggedNode, oldParent, this.draggedNode.parentNode, this.previousSibling, this.nextSibling, this.unFlattenNodes(), function () {
+          _this.flattenNodes(currentNodes);
         });
-
         this.draggedNode = null;
       }
     },
@@ -640,7 +615,7 @@ module.exports = Symbol;
      * @param {String | Number} nodeId The Node
      * @return {Object} the Node
      */
-    findNode(nodeId) {
+    findNode: function findNode(nodeId) {
       __WEBPACK_IMPORTED_MODULE_0__nodeHelper_js__["a" /* default */].findNode(nodeId, this.items);
     },
 
@@ -648,7 +623,7 @@ module.exports = Symbol;
      * Get the icon for the node
      * @param {Object} node The Node
      */
-    expandableIcon(node) {
+    expandableIcon: function expandableIcon(node) {
       if (node.expanded) {
         return "folder_open";
       } else {
@@ -660,7 +635,7 @@ module.exports = Symbol;
      * Get the style padding for the node
      * @param {Object} node The Node
      */
-    nodeStyle(node) {
+    nodeStyle: function nodeStyle(node) {
       return {
         paddingLeft: 8 + 12 * node.depth + "px"
       };
@@ -669,16 +644,15 @@ module.exports = Symbol;
     /**
      * Flatten nested nodes
      */
-    flattenNodes(nodes) {
+    flattenNodes: function flattenNodes(nodes) {
       nodes = nodes || this.items;
-
       this.flattenedNodes = __WEBPACK_IMPORTED_MODULE_0__nodeHelper_js__["a" /* default */].flattenNodes(nodes);
     },
 
     /**
      * UnFlatten flattend nodes
      */
-    unFlattenNodes() {
+    unFlattenNodes: function unFlattenNodes() {
       return __WEBPACK_IMPORTED_MODULE_0__nodeHelper_js__["a" /* default */].unFlattenNodes(this.flattenedNodes);
     },
 
@@ -686,7 +660,7 @@ module.exports = Symbol;
      * Determine if a node should be hidden
      * @param {Object} node The Node
      */
-    nodeHidden(node) {
+    nodeHidden: function nodeHidden(node) {
       if (!node.parentNode) {
         return null;
       } else if (node.parentNode.expanded) {
@@ -700,11 +674,9 @@ module.exports = Symbol;
      * Toggle node from expanded
      * @param {Object} node The Node
      */
-    toggleNode(node) {
+    toggleNode: function toggleNode(node) {
       this.$set(node, "expanded", !node.expanded);
-
       if (!node.expanded) this.collapseChildren(node);
-
       this.$emit("node-toggle", node);
     },
 
@@ -712,13 +684,12 @@ module.exports = Symbol;
      * Collapse all nodes children
      * @param {Object} node The Node
      */
-    collapseChildren(node) {
-      let vm = this;
-
+    collapseChildren: function collapseChildren(node) {
+      var vm = this;
       this.$set(node, "expanded", false);
 
       if (node.children) {
-        node.children.forEach(child => {
+        node.children.forEach(function (child) {
           vm.collapseChildren(child);
         });
       }
@@ -731,7 +702,7 @@ module.exports = Symbol;
     /**
      * Clear any active classes
      */
-    clearActive() {
+    clearActive: function clearActive() {
       $(this.$el).find(".active").removeClass("active");
     }
   }
@@ -1229,7 +1200,6 @@ function listToStyles (parentId, list) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_flattenDeep__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash_flattenDeep___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash_flattenDeep__);
 
-
 /**
  * @private
  * unFlatten a node
@@ -1237,8 +1207,9 @@ function listToStyles (parentId, list) {
  * @param {Array} node Array of flattened nodes
  * @return {Array} Array of unflattened nodes
  */
-const unFlattenNode = (node, flattenedNodes) => {
-  const children = flattenedNodes.filter(_node => {
+
+var unFlattenNode = function unFlattenNode(node, flattenedNodes) {
+  var children = flattenedNodes.filter(function (_node) {
     if (_node.parentNode) {
       return _node.parentNode.id == node.id;
     } else {
@@ -1256,15 +1227,13 @@ const unFlattenNode = (node, flattenedNodes) => {
       children: children,
       leaf: false
     });
-
-    node.children.forEach(child => {
+    node.children.forEach(function (child) {
       unFlattenNode(child, flattenedNodes);
     });
   }
 
   return node;
 };
-
 /**
  * @private
  * Flatten a node to a single array
@@ -1272,12 +1241,14 @@ const unFlattenNode = (node, flattenedNodes) => {
  * @param {Array} [children] Children of node
  * @return {Array} Array of flatten nodes
  */
-const flattenNode = (node, children) => {
+
+
+var flattenNode = function flattenNode(node, children) {
   children = children || [];
 
   if (node.children) {
     children = children.concat(node.children);
-    node.children.forEach(child => {
+    node.children.forEach(function (child) {
       child.parentNode = node;
       children.splice(children.indexOf(child) + 1, 0, flattenNode(child));
     });
@@ -1285,58 +1256,57 @@ const flattenNode = (node, children) => {
 
   return __WEBPACK_IMPORTED_MODULE_0_lodash_flattenDeep___default()(children);
 };
-
 /**
  * Flatten an array nested nodes
  * @param {Array} nodes Nodes to flatten
  * @return {Array} Array of flatten nodes
  */
-const flattenNodes = nodes => {
-  let flattenNodes = [];
 
-  nodes.forEach(node => {
+
+var flattenNodes = function flattenNodes(nodes) {
+  var flattenNodes = [];
+  nodes.forEach(function (node) {
     flattenNodes.push(node);
-
     flattenNodes.push(flattenNode(node));
   });
-
   return __WEBPACK_IMPORTED_MODULE_0_lodash_flattenDeep___default()(flattenNodes);
 };
-
 /**
  * unFlatten an array nested nodes
  * @param {Array} nodes Nodes to unflatten
  * @return {Array} Array of unflattened nodes
  */
-const unFlattenNodes = nodes => {
-  let unFlattenedNodes = [];
 
-  nodes.forEach(node => {
+
+var unFlattenNodes = function unFlattenNodes(nodes) {
+  var unFlattenedNodes = [];
+  nodes.forEach(function (node) {
     if (!node.parentNode) {
       unFlattenedNodes.push(node);
       unFlattenNode(node, nodes);
     }
   });
-
   return unFlattenedNodes;
 };
-
 /**
  * Moves a node to a new parent
  * @param {Object} node Node being moved
  * @param {Object} newParentNode new Parent Node
  */
-const moveNode = (node, newParentNode) => {
+
+
+var moveNode = function moveNode(node, newParentNode) {
   node.depth = newParentNode.depth + 1;
   node.parentNode = newParentNode;
 };
-
 /**
  * Find a node in the tree
  * @param {String | Number} nodeId Id of node to find
  * @param {Array} Array of nodes to look in
  */
-const findNode = (nodeId, nodes) => {
+
+
+var findNode = function findNode(nodeId, nodes) {
   for (var i = 0; i < nodes.length; i++) {
     var _node = nodes[i];
 
@@ -1345,7 +1315,7 @@ const findNode = (nodeId, nodes) => {
     }
 
     if (_node.children) {
-      let foundNode = findNode(nodeId, _node.children);
+      var foundNode = findNode(nodeId, _node.children);
 
       if (foundNode) {
         return foundNode;
@@ -1355,10 +1325,10 @@ const findNode = (nodeId, nodes) => {
 };
 
 /* harmony default export */ __webpack_exports__["a"] = ({
-  moveNode,
-  flattenNodes,
-  unFlattenNodes,
-  findNode
+  moveNode: moveNode,
+  flattenNodes: flattenNodes,
+  unFlattenNodes: unFlattenNodes,
+  findNode: findNode
 });
 
 /***/ }),
@@ -1787,453 +1757,468 @@ var render = function() {
               _vm.internalPagination = $event
             }
           },
-          scopedSlots: _vm._u([
-            {
-              key: "headers",
-              fn: function(props) {
-                return [
-                  _vm._t(
-                    "headers",
-                    [
-                      _c(
-                        "tr",
-                        [
-                          _vm.selectAll
-                            ? _c(
-                                "th",
-                                { attrs: { width: "50px" } },
-                                [
-                                  _c("v-checkbox", {
-                                    attrs: {
-                                      "input-value": props.all,
-                                      indeterminate: props.indeterminate,
-                                      primary: "",
-                                      "hide-details": ""
-                                    },
-                                    nativeOn: {
-                                      click: function($event) {
-                                        return _vm.toggleSelectAll($event)
-                                      }
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _vm._l(props.headers, function(header) {
-                            return [
-                              header.sortable
-                                ? _c(
-                                    "th",
-                                    {
-                                      key: header.text,
-                                      class: [
-                                        "column sortable",
-                                        _vm.pagination.descending
-                                          ? "desc"
-                                          : "asc",
-                                        header.value === _vm.pagination.sortBy
-                                          ? "active"
-                                          : "",
-                                        "text-xs-" + (header.align || "left")
-                                      ],
-                                      on: {
+          scopedSlots: _vm._u(
+            [
+              {
+                key: "headers",
+                fn: function(props) {
+                  return [
+                    _vm._t(
+                      "headers",
+                      [
+                        _c(
+                          "tr",
+                          [
+                            _vm.selectAll
+                              ? _c(
+                                  "th",
+                                  { attrs: { width: "50px" } },
+                                  [
+                                    _c("v-checkbox", {
+                                      attrs: {
+                                        "input-value": props.all,
+                                        indeterminate: props.indeterminate,
+                                        primary: "",
+                                        "hide-details": ""
+                                      },
+                                      nativeOn: {
                                         click: function($event) {
-                                          _vm.changeSort(header.value)
+                                          return _vm.toggleSelectAll($event)
                                         }
                                       }
-                                    },
-                                    [
-                                      _c("v-icon", { attrs: { small: "" } }, [
-                                        _vm._v("arrow_upward")
-                                      ]),
-                                      _vm._v(
-                                        "\n              " +
-                                          _vm._s(header.text) +
-                                          "\n            "
-                                      )
-                                    ],
-                                    1
-                                  )
-                                : _c(
-                                    "th",
-                                    {
-                                      key: header.text,
-                                      class:
-                                        "text-xs-" + (header.align || "left")
-                                    },
-                                    [
-                                      _vm._v(
-                                        "\n              " +
-                                          _vm._s(header.text) +
-                                          "\n            "
-                                      )
-                                    ]
-                                  )
-                            ]
-                          })
-                        ],
-                        2
-                      )
-                    ],
-                    { props: props }
-                  )
-                ]
-              }
-            },
-            {
-              key: "items",
-              fn: function(props) {
-                return [
-                  props.index == 0
-                    ? _c(
-                        "tr",
-                        {
-                          staticClass: "drop-row inactive",
-                          style: _vm.nodeHidden(props.item),
-                          on: {
-                            dragenter: function($event) {
-                              $event.stopPropagation()
-                              $event.preventDefault()
-                              _vm.dragEnterSlot($event)
-                            },
-                            dragleave: function($event) {
-                              $event.stopPropagation()
-                              $event.preventDefault()
-                              _vm.dragLeaveSlot($event)
-                            },
-                            drop: function($event) {
-                              $event.stopPropagation()
-                              $event.preventDefault()
-                              _vm.dropRow($event)
-                            },
-                            dragover: function($event) {
-                              $event.stopPropagation()
-                              _vm.dragOverSlot($event)
+                                    })
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm._l(props.headers, function(header) {
+                              return [
+                                header.sortable
+                                  ? _c(
+                                      "th",
+                                      {
+                                        key: header.text,
+                                        class: [
+                                          "column sortable",
+                                          _vm.pagination.descending
+                                            ? "desc"
+                                            : "asc",
+                                          header.value === _vm.pagination.sortBy
+                                            ? "active"
+                                            : "",
+                                          "text-xs-" + (header.align || "left")
+                                        ],
+                                        on: {
+                                          click: function($event) {
+                                            return _vm.changeSort(header.value)
+                                          }
+                                        }
+                                      },
+                                      [
+                                        _c("v-icon", { attrs: { small: "" } }, [
+                                          _vm._v("arrow_upward")
+                                        ]),
+                                        _vm._v(
+                                          "\n              " +
+                                            _vm._s(header.text) +
+                                            "\n            "
+                                        )
+                                      ],
+                                      1
+                                    )
+                                  : _c(
+                                      "th",
+                                      {
+                                        key: header.text,
+                                        class:
+                                          "text-xs-" + (header.align || "left")
+                                      },
+                                      [
+                                        _vm._v(
+                                          "\n              " +
+                                            _vm._s(header.text) +
+                                            "\n            "
+                                        )
+                                      ]
+                                    )
+                              ]
+                            })
+                          ],
+                          2
+                        )
+                      ],
+                      { props: props }
+                    )
+                  ]
+                }
+              },
+              {
+                key: "items",
+                fn: function(props) {
+                  return [
+                    props.index == 0
+                      ? _c(
+                          "tr",
+                          {
+                            staticClass: "drop-row inactive",
+                            style: _vm.nodeHidden(props.item),
+                            on: {
+                              dragenter: function($event) {
+                                $event.stopPropagation()
+                                $event.preventDefault()
+                                return _vm.dragEnterSlot($event)
+                              },
+                              dragleave: function($event) {
+                                $event.stopPropagation()
+                                $event.preventDefault()
+                                return _vm.dragLeaveSlot($event)
+                              },
+                              drop: function($event) {
+                                $event.stopPropagation()
+                                $event.preventDefault()
+                                return _vm.dropRow($event)
+                              },
+                              dragover: function($event) {
+                                $event.stopPropagation()
+                                return _vm.dragOverSlot($event)
+                              }
                             }
-                          }
-                        },
-                        [
-                          _c("td", {
+                          },
+                          [
+                            _c("td", {
+                              attrs: {
+                                colspan:
+                                  _vm.computedHeaders.length +
+                                  (_vm.selectAll ? 1 : 0)
+                              }
+                            })
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    props.item.leaf
+                      ? _c(
+                          "tr",
+                          {
+                            key: props.item.id,
+                            staticClass: "leaf",
+                            style: _vm.nodeHidden(props.item),
                             attrs: {
-                              colspan:
-                                _vm.computedHeaders.length +
-                                (_vm.selectAll ? 1 : 0)
+                              active: props.selected,
+                              id: props.item.id
+                            },
+                            on: {
+                              dblclick: function(e) {
+                                _vm.$emit("dblclick", e, props.item)
+                              },
+                              contextmenu: function($event) {
+                                $event.preventDefault()
+                                return (function(e) {
+                                  _vm.$emit("contextmenu", e, props.item)
+                                })($event)
+                              },
+                              dragenter: function($event) {
+                                $event.stopPropagation()
+                                $event.preventDefault()
+                                return _vm.dragEnterLeaf($event)
+                              },
+                              dragleave: function($event) {
+                                $event.stopPropagation()
+                                $event.preventDefault()
+                                return _vm.dragLeaveLeaf($event)
+                              },
+                              drop: function($event) {
+                                $event.stopPropagation()
+                                $event.preventDefault()
+                                return _vm.dropRow($event)
+                              },
+                              dragover: function($event) {
+                                $event.stopPropagation()
+                                return _vm.dragOverLeaf($event)
+                              }
                             }
-                          })
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  props.item.leaf
-                    ? _c(
-                        "tr",
-                        {
-                          key: props.item.id,
-                          staticClass: "leaf",
-                          style: _vm.nodeHidden(props.item),
-                          attrs: { active: props.selected, id: props.item.id },
-                          on: {
-                            dblclick: function(e) {
-                              _vm.$emit("dblclick", e, props.item)
-                            },
-                            contextmenu: function($event) {
-                              $event.preventDefault()
-                              return (function(e) {
-                                _vm.$emit("contextmenu", e, props.item)
-                              })($event)
-                            },
-                            dragenter: function($event) {
-                              $event.stopPropagation()
-                              $event.preventDefault()
-                              _vm.dragEnterLeaf($event)
-                            },
-                            dragleave: function($event) {
-                              $event.stopPropagation()
-                              $event.preventDefault()
-                              _vm.dragLeaveLeaf($event)
-                            },
-                            drop: function($event) {
-                              $event.stopPropagation()
-                              $event.preventDefault()
-                              _vm.dropRow($event)
-                            },
-                            dragover: function($event) {
-                              $event.stopPropagation()
-                              _vm.dragOverLeaf($event)
-                            }
-                          }
-                        },
-                        [
-                          _vm.selectAll
-                            ? _c(
-                                "td",
-                                [
-                                  _c("v-checkbox", {
-                                    attrs: {
-                                      "input-value": props.selected,
-                                      primary: "",
-                                      "hide-details": ""
-                                    },
+                          },
+                          [
+                            _vm.selectAll
+                              ? _c(
+                                  "td",
+                                  [
+                                    _c("v-checkbox", {
+                                      attrs: {
+                                        "input-value": props.selected,
+                                        primary: "",
+                                        "hide-details": ""
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          props.selected = !props.selected
+                                        }
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "px-1",
+                                staticStyle: { width: "0.1%" }
+                              },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "sort-handle",
+                                    staticStyle: { cursor: "move" },
+                                    attrs: { icon: "", draggable: "" },
                                     on: {
-                                      click: function($event) {
-                                        props.selected = !props.selected
+                                      dragstart: function($event) {
+                                        $event.stopPropagation()
+                                        return _vm.dragStart($event)
+                                      },
+                                      dragend: function($event) {
+                                        $event.stopPropagation()
+                                        $event.preventDefault()
+                                        return _vm.dragEnd($event)
                                       }
                                     }
-                                  })
-                                ],
-                                1
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "px-1",
-                              staticStyle: { width: "0.1%" }
-                            },
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  staticClass: "sort-handle",
-                                  staticStyle: { cursor: "move" },
-                                  attrs: { icon: "", draggable: "" },
-                                  on: {
-                                    dragstart: function($event) {
-                                      $event.stopPropagation()
-                                      _vm.dragStart($event)
-                                    },
-                                    dragend: function($event) {
-                                      $event.stopPropagation()
-                                      $event.preventDefault()
-                                      return _vm.dragEnd($event)
-                                    }
-                                  }
-                                },
-                                [_c("v-icon", [_vm._v("drag_handle")])],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          props.item.leaf
-                            ? _c(
-                                "td",
-                                {
-                                  staticClass: "expandable-node",
-                                  staticStyle: { width: "0.1%" },
-                                  style: _vm.nodeStyle(props.item)
-                                },
-                                [
-                                  _c("v-icon", [_vm._v("keyboard_arrow_right")])
-                                ],
-                                1
-                              )
-                            : _c(
-                                "td",
-                                {
-                                  staticClass: "expandable-node",
-                                  staticStyle: { width: "0.1%" },
-                                  style: _vm.nodeStyle(props.item),
-                                  on: {
-                                    click: function($event) {
-                                      _vm.toggleNode(props.item)
-                                    }
-                                  }
-                                },
-                                [
-                                  _c("v-icon", [
-                                    _vm._v(
-                                      _vm._s(_vm.expandableIcon(props.item))
-                                    )
-                                  ])
-                                ],
-                                1
-                              ),
-                          _vm._v(" "),
-                          _vm._t("row", null, null, props)
-                        ],
-                        2
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  !props.item.leaf
-                    ? _c(
-                        "tr",
-                        {
-                          key: props.item.id,
-                          staticClass: "folder",
-                          style: _vm.nodeHidden(props.item),
-                          attrs: { active: props.selected, id: props.item.id },
-                          on: {
-                            dblclick: function(e) {
-                              _vm.$emit("dblclick", e, props.item)
-                            },
-                            contextmenu: function($event) {
-                              $event.preventDefault()
-                              return (function(e) {
-                                _vm.$emit("contextmenu", e, props.item)
-                              })($event)
-                            },
-                            dragenter: function($event) {
-                              $event.stopPropagation()
-                              $event.preventDefault()
-                              _vm.dragEnterFolder($event)
-                            },
-                            dragleave: function($event) {
-                              $event.stopPropagation()
-                              $event.preventDefault()
-                              _vm.dragLeaveFolder($event)
-                            },
-                            drop: function($event) {
-                              $event.stopPropagation()
-                              $event.preventDefault()
-                              _vm.dropRow($event)
-                            },
-                            dragover: function($event) {
-                              $event.stopPropagation()
-                              _vm.dragOverFolder($event)
-                            }
-                          }
-                        },
-                        [
-                          _vm.selectAll
-                            ? _c(
-                                "td",
-                                [
-                                  _c("v-checkbox", {
-                                    attrs: {
-                                      "input-value": props.selected,
-                                      primary: "",
-                                      "hide-details": ""
-                                    },
+                                  },
+                                  [_c("v-icon", [_vm._v("drag_handle")])],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            props.item.leaf
+                              ? _c(
+                                  "td",
+                                  {
+                                    staticClass: "expandable-node",
+                                    staticStyle: { width: "0.1%" },
+                                    style: _vm.nodeStyle(props.item)
+                                  },
+                                  [
+                                    _c("v-icon", [
+                                      _vm._v("keyboard_arrow_right")
+                                    ])
+                                  ],
+                                  1
+                                )
+                              : _c(
+                                  "td",
+                                  {
+                                    staticClass: "expandable-node",
+                                    staticStyle: { width: "0.1%" },
+                                    style: _vm.nodeStyle(props.item),
                                     on: {
                                       click: function($event) {
-                                        props.selected = !props.selected
+                                        return _vm.toggleNode(props.item)
                                       }
                                     }
-                                  })
-                                ],
-                                1
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          _c(
-                            "td",
-                            {
-                              staticClass: "px-1",
-                              staticStyle: { width: "0.1%" }
+                                  },
+                                  [
+                                    _c("v-icon", [
+                                      _vm._v(
+                                        _vm._s(_vm.expandableIcon(props.item))
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                ),
+                            _vm._v(" "),
+                            _vm._t("row", null, null, props)
+                          ],
+                          2
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    !props.item.leaf
+                      ? _c(
+                          "tr",
+                          {
+                            key: props.item.id,
+                            staticClass: "folder",
+                            style: _vm.nodeHidden(props.item),
+                            attrs: {
+                              active: props.selected,
+                              id: props.item.id
                             },
-                            [
-                              _c(
-                                "v-btn",
-                                {
-                                  staticClass: "sort-handle",
-                                  staticStyle: { cursor: "move" },
-                                  attrs: { icon: "", draggable: "" },
-                                  on: {
-                                    dragstart: function($event) {
-                                      $event.stopPropagation()
-                                      _vm.dragStart($event)
-                                    },
-                                    dragend: function($event) {
-                                      $event.stopPropagation()
-                                      $event.preventDefault()
-                                      return _vm.dragEnd($event)
+                            on: {
+                              dblclick: function(e) {
+                                _vm.$emit("dblclick", e, props.item)
+                              },
+                              contextmenu: function($event) {
+                                $event.preventDefault()
+                                return (function(e) {
+                                  _vm.$emit("contextmenu", e, props.item)
+                                })($event)
+                              },
+                              dragenter: function($event) {
+                                $event.stopPropagation()
+                                $event.preventDefault()
+                                return _vm.dragEnterFolder($event)
+                              },
+                              dragleave: function($event) {
+                                $event.stopPropagation()
+                                $event.preventDefault()
+                                return _vm.dragLeaveFolder($event)
+                              },
+                              drop: function($event) {
+                                $event.stopPropagation()
+                                $event.preventDefault()
+                                return _vm.dropRow($event)
+                              },
+                              dragover: function($event) {
+                                $event.stopPropagation()
+                                return _vm.dragOverFolder($event)
+                              }
+                            }
+                          },
+                          [
+                            _vm.selectAll
+                              ? _c(
+                                  "td",
+                                  [
+                                    _c("v-checkbox", {
+                                      attrs: {
+                                        "input-value": props.selected,
+                                        primary: "",
+                                        "hide-details": ""
+                                      },
+                                      on: {
+                                        click: function($event) {
+                                          props.selected = !props.selected
+                                        }
+                                      }
+                                    })
+                                  ],
+                                  1
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c(
+                              "td",
+                              {
+                                staticClass: "px-1",
+                                staticStyle: { width: "0.1%" }
+                              },
+                              [
+                                _c(
+                                  "v-btn",
+                                  {
+                                    staticClass: "sort-handle",
+                                    staticStyle: { cursor: "move" },
+                                    attrs: { icon: "", draggable: "" },
+                                    on: {
+                                      dragstart: function($event) {
+                                        $event.stopPropagation()
+                                        return _vm.dragStart($event)
+                                      },
+                                      dragend: function($event) {
+                                        $event.stopPropagation()
+                                        $event.preventDefault()
+                                        return _vm.dragEnd($event)
+                                      }
                                     }
-                                  }
-                                },
-                                [_c("v-icon", [_vm._v("drag_handle")])],
-                                1
-                              )
-                            ],
-                            1
-                          ),
-                          _vm._v(" "),
-                          props.item.leaf
-                            ? _c(
-                                "td",
-                                {
-                                  staticClass: "expandable-node",
-                                  staticStyle: { width: "0.1%" },
-                                  style: _vm.nodeStyle(props.item)
-                                },
-                                [
-                                  _c("v-icon", [_vm._v("keyboard_arrow_right")])
-                                ],
-                                1
-                              )
-                            : _c(
-                                "td",
-                                {
-                                  staticClass: "expandable-node",
-                                  staticStyle: { width: "0.1%" },
-                                  style: _vm.nodeStyle(props.item),
-                                  on: {
-                                    click: function($event) {
-                                      _vm.toggleNode(props.item)
+                                  },
+                                  [_c("v-icon", [_vm._v("drag_handle")])],
+                                  1
+                                )
+                              ],
+                              1
+                            ),
+                            _vm._v(" "),
+                            props.item.leaf
+                              ? _c(
+                                  "td",
+                                  {
+                                    staticClass: "expandable-node",
+                                    staticStyle: { width: "0.1%" },
+                                    style: _vm.nodeStyle(props.item)
+                                  },
+                                  [
+                                    _c("v-icon", [
+                                      _vm._v("keyboard_arrow_right")
+                                    ])
+                                  ],
+                                  1
+                                )
+                              : _c(
+                                  "td",
+                                  {
+                                    staticClass: "expandable-node",
+                                    staticStyle: { width: "0.1%" },
+                                    style: _vm.nodeStyle(props.item),
+                                    on: {
+                                      click: function($event) {
+                                        return _vm.toggleNode(props.item)
+                                      }
                                     }
-                                  }
-                                },
-                                [
-                                  _c("v-icon", [
-                                    _vm._v(
-                                      _vm._s(_vm.expandableIcon(props.item))
-                                    )
-                                  ])
-                                ],
-                                1
-                              ),
-                          _vm._v(" "),
-                          _vm._t("row", null, null, props)
-                        ],
-                        2
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _c(
-                    "tr",
-                    {
-                      staticClass: "drop-row inactive",
-                      style: _vm.nodeHidden(props.item),
-                      on: {
-                        dragenter: function($event) {
-                          $event.stopPropagation()
-                          $event.preventDefault()
-                          _vm.dragEnterSlot($event)
-                        },
-                        dragleave: function($event) {
-                          $event.stopPropagation()
-                          $event.preventDefault()
-                          _vm.dragLeaveSlot($event)
-                        },
-                        drop: function($event) {
-                          $event.stopPropagation()
-                          $event.preventDefault()
-                          _vm.dropRow($event)
-                        },
-                        dragover: function($event) {
-                          $event.stopPropagation()
-                          _vm.dragOverSlot($event)
+                                  },
+                                  [
+                                    _c("v-icon", [
+                                      _vm._v(
+                                        _vm._s(_vm.expandableIcon(props.item))
+                                      )
+                                    ])
+                                  ],
+                                  1
+                                ),
+                            _vm._v(" "),
+                            _vm._t("row", null, null, props)
+                          ],
+                          2
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _c(
+                      "tr",
+                      {
+                        staticClass: "drop-row inactive",
+                        style: _vm.nodeHidden(props.item),
+                        on: {
+                          dragenter: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            return _vm.dragEnterSlot($event)
+                          },
+                          dragleave: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            return _vm.dragLeaveSlot($event)
+                          },
+                          drop: function($event) {
+                            $event.stopPropagation()
+                            $event.preventDefault()
+                            return _vm.dropRow($event)
+                          },
+                          dragover: function($event) {
+                            $event.stopPropagation()
+                            return _vm.dragOverSlot($event)
+                          }
                         }
-                      }
-                    },
-                    [
-                      _c("td", {
-                        attrs: {
-                          colspan:
-                            _vm.computedHeaders.length + (_vm.selectAll ? 1 : 0)
-                        }
-                      })
-                    ]
-                  )
-                ]
+                      },
+                      [
+                        _c("td", {
+                          attrs: {
+                            colspan:
+                              _vm.computedHeaders.length +
+                              (_vm.selectAll ? 1 : 0)
+                          }
+                        })
+                      ]
+                    )
+                  ]
+                }
               }
-            }
-          ]),
+            ],
+            null,
+            true
+          ),
           model: {
             value: _vm.selected,
             callback: function($$v) {

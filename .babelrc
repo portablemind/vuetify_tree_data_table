@@ -1,0 +1,17 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "modules": false,
+        "targets": {
+          "browsers": "> 1%",
+          "uglify": true
+        },
+        "useBuiltIns": "entry"
+      }
+    ]
+  ],
+
+  "plugins": ["transform-es2015-arrow-functions"]
+}
